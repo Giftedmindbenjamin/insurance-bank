@@ -706,6 +706,56 @@
             color: var(--gray-900);
         }
 
+        /* Progress bar styles */
+        .progress-container {
+            width: 100%;
+            background-color: var(--gray-200);
+            border-radius: 20px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 20px;
+            background: linear-gradient(90deg, var(--boa-blue), var(--boa-red));
+            border-radius: 20px;
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+        
+        .progress-percent {
+            font-weight: 700;
+            color: var(--boa-red);
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        /* Summary modal styles */
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+        
+        .summary-label {
+            color: var(--gray-600);
+            font-weight: 500;
+        }
+        
+        .summary-value {
+            color: var(--gray-900);
+            font-weight: 700;
+        }
+        
+        .summary-amount {
+            font-size: 28px;
+            color: var(--boa-red);
+            font-weight: 700;
+            margin: 20px 0;
+            text-align: center;
+        }
+
         @media (max-width: 768px) {
             .header-container {
                 padding: 10px 16px;
@@ -822,14 +872,50 @@
     </style>
 </head>
 <body>
-    <!-- Loading Modal -->
+    <!-- Loading Modal with Progress Bar -->
     <div class="modal" id="loadingModal">
         <div class="modal-content">
             <div class="modal-icon loading">
                 <i class="fas fa-circle-notch"></i>
             </div>
-            <div class="modal-title">Processing Purchase</div>
-            <div class="modal-message">Please wait while we process your gift card order...</div>
+            <div class="modal-title">Processing Transaction</div>
+            <div class="modal-message" id="loadingMessage">Please wait while we process your transfer...</div>
+            <div class="progress-percent" id="progressPercent">0%</div>
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Summary Modal -->
+    <div class="modal" id="summaryModal">
+        <div class="modal-content">
+            <div class="modal-icon">
+                <i class="fas fa-file-invoice" style="color: var(--boa-blue);"></i>
+            </div>
+            <div class="modal-title">Transfer Summary</div>
+            <div class="modal-message">Please review your transfer details</div>
+            
+            <div style="text-align: left; margin: 20px 0;">
+                <div class="summary-item">
+                    <span class="summary-label">Recipient Name:</span>
+                    <span class="summary-value" id="summaryRecipientName"></span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Account Number:</span>
+                    <span class="summary-value" id="summaryAccountNumber"></span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Description:</span>
+                    <span class="summary-value" id="summaryDescription"></span>
+                </div>
+            </div>
+            <div class="summary-amount" id="summaryAmount"></div>
+
+            <div style="display: flex; gap: 10px;">
+                <button class="modal-button" onclick="closeSummaryModal()" style="background: var(--gray-200); color: var(--gray-800); flex: 1;">Cancel</button>
+                <button class="modal-button" id="proceedTransferBtn" style="flex: 1;">Proceed</button>
+            </div>
         </div>
     </div>
 
@@ -839,8 +925,8 @@
             <div class="modal-icon success">
                 <i class="fas fa-check-circle"></i>
             </div>
-            <div class="modal-title">Purchase Successful!</div>
-            <div class="modal-message" id="successMessage">Your gift card has been purchased.</div>
+            <div class="modal-title">Transfer Successful!</div>
+            <div class="modal-message" id="successMessage">Your money has been sent successfully.</div>
             <button class="modal-button" onclick="closeSuccessModal()">Done</button>
         </div>
     </div>
@@ -851,13 +937,13 @@
             <div class="modal-icon error">
                 <i class="fas fa-exclamation-circle"></i>
             </div>
-            <div class="modal-title">Transaction Failed</div>
-            <div class="modal-message" id="errorMessage">Unable to complete purchase. Please try again.</div>
+            <div class="modal-title">Transaction Halted</div>
+            <div class="modal-message" id="errorMessage">Transaction halted at 89% due to network error.</div>
             <button class="modal-button" onclick="closeErrorModal()">Try Again</button>
         </div>
     </div>
 
-    <!-- Gift Card Purchase Modal -->
+    <!-- Gift Card Modal -->
     <div class="modal" id="giftcardModal">
         <div class="modal-content">
             <div class="modal-icon">
@@ -866,20 +952,17 @@
             <div class="modal-title">Buy a Gift Card</div>
             <div class="modal-message">Select a gift card type</div>
             
-            <!-- Apple Gift Card option (preselected) -->
             <div class="gift-card-option selected" id="appleGiftCardOption">
                 <i class="fab fa-apple"></i>
                 <span>Apple Gift Card</span>
             </div>
-            <!-- Dummy option -->
             <div class="gift-card-option" style="opacity:0.7; pointer-events:none;">
                 <i class="fab fa-google-play"></i>
-                <span>Google Play </span>
+                <span>Google Play (coming soon)</span>
             </div>
 
-            <!-- Purchase button -->
             <button class="btn-transfer" id="purchaseGiftCardBtn" style="margin-top: 10px; width:100%;">
-                <i class="fas fa-lock"></i> Purchase $500 Apple Gift Card
+                <i class="fas fa-lock"></i> Purchase $50 Apple Gift Card
             </button>
             <button class="modal-button" onclick="closeGiftcardModal()" style="margin-top: 12px; background: var(--gray-200); color: var(--gray-800);">Cancel</button>
         </div>
@@ -1003,7 +1086,7 @@
                         <i class="fas fa-piggy-bank"></i>
                         <span>Savings</span>
                     </div>
-                    <div class="card-amount" id="savingsBalance">$9,045.00</div>
+                    <div class="card-amount" id="savingsBalance">$5,045.00</div>
                     <div class="card-label">4.5% APY • Wealth Account</div>
                 </div>
 
@@ -1060,7 +1143,6 @@
                     <span>Withdraw</span>
                     <small>Cash out</small>
                 </a>
-                <!-- New Subscriptions / Gift Cards button -->
                 <a href="#" class="action-card" id="subscriptionsBtn">
                     <i class="fas fa-gift"></i>
                     <span>Gift Cards</span>
@@ -1165,7 +1247,7 @@
     </div>
 
     <script>
-        // Hardcoded user data - Gonzalez Darmain with $5,061
+        // Hardcoded user data
         const userData = {
             fullName: 'Gonzalez Darmain',
             email: 'gonzalez@example.com',
@@ -1181,8 +1263,7 @@
         // Update UI with user data
         document.getElementById('userName').textContent = userData.fullName;
         document.getElementById('userInitials').textContent = 'GD';
-        // Fix welcome name (original had Andrew, keep it)
-        // Format and display balances
+        
         function formatCurrency(amount) {
             return '$' + amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
         }
@@ -1225,6 +1306,10 @@
             overlay.classList.remove('active');
         });
 
+        // Transfer variables
+        let transferData = {};
+        let progressInterval = null;
+
         // Modal functions
         function showLoadingModal() {
             document.getElementById('loadingModal').classList.add('active');
@@ -1232,6 +1317,21 @@
 
         function hideLoadingModal() {
             document.getElementById('loadingModal').classList.remove('active');
+            // Reset progress
+            document.getElementById('progressBar').style.width = '0%';
+            document.getElementById('progressPercent').textContent = '0%';
+            if (progressInterval) {
+                clearInterval(progressInterval);
+                progressInterval = null;
+            }
+        }
+
+        function showSummaryModal() {
+            document.getElementById('summaryModal').classList.add('active');
+        }
+
+        function closeSummaryModal() {
+            document.getElementById('summaryModal').classList.remove('active');
         }
 
         function showSuccessModal(message) {
@@ -1252,7 +1352,7 @@
             document.getElementById('errorModal').classList.remove('active');
         }
 
-        // Gift card modal controls
+        // Gift card functions
         function showGiftcardModal() {
             document.getElementById('giftcardModal').classList.add('active');
         }
@@ -1261,30 +1361,21 @@
             document.getElementById('giftcardModal').classList.remove('active');
         }
 
-        // Quick Action button: Subscriptions -> open gift card modal
         document.getElementById('subscriptionsBtn').addEventListener('click', function(e) {
             e.preventDefault();
             showGiftcardModal();
         });
 
-        // Purchase button inside gift card modal
         document.getElementById('purchaseGiftCardBtn').addEventListener('click', function() {
-            // Ensure Apple Gift Card is selected (it is by default)
-            // Close the gift card modal
             closeGiftcardModal();
-            
-            // Show loading modal
             showLoadingModal();
-
-            // Simulate processing delay then fail (as requested: fail to purchase error message)
             setTimeout(() => {
                 hideLoadingModal();
-                // Always show error message for Apple Gift Card purchase as per instruction
                 showErrorModal('Failed to purchase Apple Gift Card. Please try again later.');
-            }, 3000); // 3 second loading
+            }, 3000);
         });
 
-        // Transfer form handling (original)
+        // Transfer form handling - Show summary first
         document.getElementById('transferForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -1293,6 +1384,7 @@
             const amount = parseFloat(document.getElementById('transferAmount').value);
             const description = document.getElementById('transferDescription').value || 'Transfer';
 
+            // Validate inputs
             if (!recipientAccount || recipientAccount.length !== 10) {
                 showErrorModal('Please enter a valid 10-digit account number');
                 return;
@@ -1313,52 +1405,108 @@
                 return;
             }
 
+            // Store transfer data
+            transferData = {
+                account: recipientAccount,
+                name: recipientName,
+                amount: amount,
+                description: description
+            };
+
+            // Update summary modal
+            document.getElementById('summaryRecipientName').textContent = recipientName;
+            document.getElementById('summaryAccountNumber').textContent = '****' + recipientAccount.slice(-4);
+            document.getElementById('summaryDescription').textContent = description;
+            document.getElementById('summaryAmount').textContent = formatCurrency(amount);
+
+            // Show summary modal
+            showSummaryModal();
+        });
+
+        // Proceed button in summary modal
+        document.getElementById('proceedTransferBtn').addEventListener('click', function() {
+            // Close summary modal
+            closeSummaryModal();
+            
+            // Show loading modal with progress bar
             showLoadingModal();
-
-            setTimeout(() => {
-                hideLoadingModal();
-
-                const shouldError = Math.random() < 0.3; // 30% chance of error
-
-                if (shouldError) {
-                    showErrorModal('Transaction failed. Please try again.');
-                } else {
-                    userData.accounts.checking -= amount;
-                    userData.totalBalance -= amount;
+            document.getElementById('loadingMessage').textContent = 'Processing transfer...';
+            
+            let progress = 0;
+            const progressBar = document.getElementById('progressBar');
+            const progressPercent = document.getElementById('progressPercent');
+            
+            // Clear any existing interval
+            if (progressInterval) {
+                clearInterval(progressInterval);
+            }
+            
+            // Simulate progress counting from 0 to 100
+            progressInterval = setInterval(() => {
+                progress += 1;
+                progressBar.style.width = progress + '%';
+                progressPercent.textContent = progress + '%';
+                
+                // At 89%, show error and stop
+                if (progress === 89) {
+                    clearInterval(progressInterval);
+                    progressInterval = null;
                     
-                    document.getElementById('checkingBalance').textContent = formatCurrency(userData.accounts.checking);
-                    document.getElementById('totalWealth').textContent = formatCurrency(userData.totalBalance);
-
-                    const transactionsList = document.getElementById('transactionsList');
-                    const newTransaction = document.createElement('div');
-                    newTransaction.className = 'transaction-item';
-                    
-                    const today = new Date();
-                    const formattedDate = today.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-                    
-                    newTransaction.innerHTML = `
-                        <div class="transaction-left">
-                            <div class="transaction-icon">
-                                <i class="fas fa-paper-plane"></i>
-                            </div>
-                            <div class="transaction-details">
-                                <h4>${description}</h4>
-                                <p>To: ${recipientName} • ${formattedDate}</p>
-                            </div>
-                        </div>
-                        <div class="transaction-amount">
-                            <div class="amount negative">-${formatCurrency(amount)}</div>
-                            <div class="date">Today</div>
-                        </div>
-                    `;
-                    
-                    transactionsList.insertBefore(newTransaction, transactionsList.firstChild);
-
-                    showSuccessModal(`Successfully sent ${formatCurrency(amount)} to ${recipientName}`);
-
-                    document.getElementById('transferForm').reset();
+                    // Small delay to show the 89% before error
+                    setTimeout(() => {
+                        hideLoadingModal();
+                        showErrorModal('Transaction halted at 89% due to network error. Please try again.');
+                    }, 300);
                 }
-            }, 3000);
+                
+                // If we somehow reach 100% (shouldn't happen with halt at 89), just in case
+                if (progress === 100) {
+                    clearInterval(progressInterval);
+                    progressInterval = null;
+                    
+                    setTimeout(() => {
+                        hideLoadingModal();
+                        
+                        // Update balance
+                        userData.accounts.checking -= transferData.amount;
+                        userData.totalBalance -= transferData.amount;
+                        
+                        document.getElementById('checkingBalance').textContent = formatCurrency(userData.accounts.checking);
+                        document.getElementById('totalWealth').textContent = formatCurrency(userData.totalBalance);
+
+                        // Add transaction to list
+                        const transactionsList = document.getElementById('transactionsList');
+                        const newTransaction = document.createElement('div');
+                        newTransaction.className = 'transaction-item';
+                        
+                        const today = new Date();
+                        const formattedDate = today.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+                        
+                        newTransaction.innerHTML = `
+                            <div class="transaction-left">
+                                <div class="transaction-icon">
+                                    <i class="fas fa-paper-plane"></i>
+                                </div>
+                                <div class="transaction-details">
+                                    <h4>${transferData.description}</h4>
+                                    <p>To: ${transferData.name} • ${formattedDate}</p>
+                                </div>
+                            </div>
+                            <div class="transaction-amount">
+                                <div class="amount negative">-${formatCurrency(transferData.amount)}</div>
+                                <div class="date">Today</div>
+                            </div>
+                        `;
+                        
+                        transactionsList.insertBefore(newTransaction, transactionsList.firstChild);
+
+                        showSuccessModal(`Successfully sent ${formatCurrency(transferData.amount)} to ${transferData.name}`);
+                        
+                        // Reset form
+                        document.getElementById('transferForm').reset();
+                    }, 500);
+                }
+            }, 50); // Update every 50ms for smooth animation
         });
 
         // Logout functionality
@@ -1367,7 +1515,7 @@
             window.location.href = 'index.html';
         });
 
-        // Prevent default on all action cards (except subscriptions which we handle)
+        // Prevent default on action cards
         document.querySelectorAll('.action-card').forEach(card => {
             if (card.id !== 'subscriptionsBtn') {
                 card.addEventListener('click', (e) => {
@@ -1377,8 +1525,6 @@
                 });
             }
         });
-
-        // Make sure Apple option is selected (it already has class 'selected')
     </script>
 </body>
 </html>
