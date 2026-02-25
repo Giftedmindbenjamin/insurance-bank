@@ -5,6 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Dashboard - Bank of America</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Smartsupp Live Chat script -->
+<script type="text/javascript">
+var _smartsupp = _smartsupp || {};
+_smartsupp.key = '55fe412f3f90f18bbc4ae9e36e56671e11056cc6';
+window.smartsupp||(function(d) {
+  var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
+  s=d.getElementsByTagName('script')[0];c=d.createElement('script');
+  c.type='text/javascript';c.charset='utf-8';c.async=true;
+  c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+})(document);
+</script>
+<noscript>Powered by <a href="https://www.smartsupp.com" target="_blank">Smartsupp</a></noscript>
+
+    
     <style>
         * {
             margin: 0;
@@ -251,6 +266,10 @@
         .welcome-content h1 {
             font-size: 24px;
             margin-bottom: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
         }
 
         .welcome-content p {
@@ -326,6 +345,7 @@
             font-weight: 700;
             color: var(--gray-900);
             margin-bottom: 5px;
+            word-break: break-word;
         }
 
         .card-label {
@@ -354,6 +374,7 @@
         .total-wealth-amount {
             font-size: 36px;
             font-weight: 700;
+            word-break: break-word;
         }
 
         .section-title {
@@ -390,7 +411,7 @@
             font-size: 14px;
         }
 
-        .form-input {
+        .form-input, .form-select {
             width: 100%;
             padding: 14px 16px;
             border: 2px solid var(--gray-200);
@@ -400,7 +421,7 @@
             background: white;
         }
 
-        .form-input:focus {
+        .form-input:focus, .form-select:focus {
             outline: none;
             border-color: var(--boa-red);
             box-shadow: 0 0 0 4px rgba(227, 24, 55, 0.1);
@@ -577,6 +598,7 @@
             border-radius: 24px;
             padding: 24px;
             box-shadow: var(--shadow-sm);
+            overflow: hidden;
         }
 
         .transactions-header {
@@ -601,6 +623,11 @@
             padding: 8px 16px;
             background: rgba(227, 24, 55, 0.1);
             border-radius: 30px;
+            white-space: nowrap;
+        }
+
+        .transaction-list {
+            width: 100%;
         }
 
         .transaction-item {
@@ -609,8 +636,7 @@
             justify-content: space-between;
             padding: 16px 0;
             border-bottom: 1px solid var(--gray-100);
-            flex-wrap: wrap;
-            gap: 10px;
+            gap: 12px;
         }
 
         .transaction-item:last-child {
@@ -621,6 +647,8 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            flex: 1;
+            min-width: 0; /* Allows text truncation */
         }
 
         .transaction-icon {
@@ -633,27 +661,42 @@
             justify-content: center;
             color: var(--boa-red);
             font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .transaction-details {
+            min-width: 0; /* Allows text truncation */
+            flex: 1;
         }
 
         .transaction-details h4 {
             font-size: 16px;
             color: var(--gray-900);
             margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .transaction-details p {
             font-size: 13px;
             color: var(--gray-600);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .transaction-amount {
             text-align: right;
+            flex-shrink: 0;
+            min-width: 100px;
         }
 
         .amount {
             font-weight: 700;
             font-size: 18px;
             color: var(--gray-900);
+            white-space: nowrap;
         }
 
         .amount.positive {
@@ -667,6 +710,7 @@
         .date {
             font-size: 12px;
             color: var(--gray-600);
+            white-space: nowrap;
         }
 
         .millionaire-badge {
@@ -679,7 +723,7 @@
             display: inline-flex;
             align-items: center;
             gap: 4px;
-            margin-left: 10px;
+            white-space: nowrap;
         }
 
         .gift-card-option {
@@ -736,16 +780,22 @@
             justify-content: space-between;
             padding: 12px 0;
             border-bottom: 1px solid var(--gray-100);
+            gap: 10px;
         }
         
         .summary-label {
             color: var(--gray-600);
             font-weight: 500;
+            font-size: 14px;
         }
         
         .summary-value {
             color: var(--gray-900);
             font-weight: 700;
+            font-size: 14px;
+            text-align: right;
+            word-break: break-word;
+            max-width: 60%;
         }
         
         .summary-amount {
@@ -754,6 +804,17 @@
             font-weight: 700;
             margin: 20px 0;
             text-align: center;
+            word-break: break-word;
+        }
+
+        /* Others bank input field */
+        .others-bank-input {
+            margin-top: 10px;
+            display: none;
+        }
+
+        .others-bank-input.show {
+            display: block;
         }
 
         @media (max-width: 768px) {
@@ -825,17 +886,44 @@
 
             .welcome-content h1 {
                 font-size: 20px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .millionaire-badge {
+                margin-left: 0;
             }
 
             .transaction-item {
                 flex-direction: column;
                 align-items: flex-start;
+                gap: 10px;
+            }
+
+            .transaction-left {
+                width: 100%;
+            }
+
+            .transaction-details {
+                width: calc(100% - 63px);
+            }
+
+            .transaction-details h4,
+            .transaction-details p {
+                white-space: normal;
+                word-break: break-word;
             }
 
             .transaction-amount {
                 width: 100%;
                 text-align: left;
                 margin-left: 63px;
+                min-width: auto;
+            }
+
+            .amount {
+                font-size: 16px;
             }
 
             .total-wealth {
@@ -843,8 +931,23 @@
                 align-items: flex-start;
             }
 
+            .total-wealth-amount {
+                font-size: 28px;
+            }
+
             .transfer-form {
                 grid-template-columns: 1fr;
+            }
+
+            .summary-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+
+            .summary-value {
+                text-align: left;
+                max-width: 100%;
             }
         }
 
@@ -867,6 +970,32 @@
 
             .total-wealth-amount {
                 font-size: 28px;
+            }
+
+            .transaction-left {
+                gap: 10px;
+            }
+
+            .transaction-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .transaction-amount {
+                margin-left: 50px;
+            }
+
+            .modal-content {
+                padding: 20px;
+            }
+
+            .modal-title {
+                font-size: 20px;
+            }
+
+            .modal-icon {
+                font-size: 50px;
             }
         }
     </style>
@@ -898,12 +1027,16 @@
             
             <div style="text-align: left; margin: 20px 0;">
                 <div class="summary-item">
-                    <span class="summary-label">Recipient Name:</span>
-                    <span class="summary-value" id="summaryRecipientName"></span>
+                    <span class="summary-label">Recipient Bank:</span>
+                    <span class="summary-value" id="summaryBankName"></span>
                 </div>
                 <div class="summary-item">
                     <span class="summary-label">Account Number:</span>
                     <span class="summary-value" id="summaryAccountNumber"></span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Recipient Name:</span>
+                    <span class="summary-value" id="summaryRecipientName"></span>
                 </div>
                 <div class="summary-item">
                     <span class="summary-label">Description:</span>
@@ -937,8 +1070,8 @@
             <div class="modal-icon error">
                 <i class="fas fa-exclamation-circle"></i>
             </div>
-            <div class="modal-title">Transaction Halted</div>
-            <div class="modal-message" id="errorMessage">Transaction halted,deposit $200 to your tax account.</div>
+            <div class="modal-title">Transaction Declined</div>
+            <div class="modal-message" id="errorMessage">Recipient account is not authorized for transactions.</div>
             <button class="modal-button" onclick="closeErrorModal()">Try Again</button>
         </div>
     </div>
@@ -974,20 +1107,20 @@
                 <button class="menu-toggle" id="menuToggle">
                     <i class="fas fa-bars"></i>
                 </button>
-                <a href="index.html" class="logo">
+                <a href="dashboard.html" class="logo">
                     <i class="fas fa-university"></i>
                     <span>Bank of America</span>
                 </a>
             </div>
             <div class="header-right">
-                <div class="notifications" onclick="alert('No new notifications')">
+                <div class="notifications" onclick="window.location.href='notifications.html'">
                     <i class="far fa-bell"></i>
-                    <span class="badge">0</span>
+                    <span class="badge">3</span>
                 </div>
-                <div class="user-menu" id="userMenu" onclick="alert('Profile settings coming soon')">
-                    <div class="user-avatar" id="userInitials">GD</div>
+                <div class="user-menu" id="userMenu" onclick="window.location.href='profile.html'">
+                    <div class="user-avatar" id="userInitials">MR</div>
                     <div class="user-info">
-                        <div class="user-name" id="userName">Gonzalez Darmain</div>
+                        <div class="user-name" id="userName">Marius Robinson</div>
                     </div>
                     <i class="fas fa-chevron-down" style="color: var(--gray-600); font-size: 12px;"></i>
                 </div>
@@ -1001,55 +1134,55 @@
         <aside class="sidebar" id="sidebar">
             <ul class="nav-menu">
                 <li class="nav-item">
-                    <a href="#" class="nav-link active">
+                    <a href="dashboard.html" class="nav-link active">
                         <i class="fas fa-home"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link" onclick="alert('Accounts page coming soon'); return false;">
+                    <a href="accounts.html" class="nav-link">
                         <i class="fas fa-credit-card"></i>
                         <span>Accounts</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link" onclick="alert('Transfers page coming soon'); return false;">
+                    <a href="transfers.html" class="nav-link">
                         <i class="fas fa-exchange-alt"></i>
                         <span>Transfers</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link" onclick="alert('Bill Pay coming soon'); return false;">
+                    <a href="billpay.html" class="nav-link">
                         <i class="fas fa-receipt"></i>
                         <span>Bill Pay</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link" onclick="alert('Investments coming soon'); return false;">
+                    <a href="investments.html" class="nav-link">
                         <i class="fas fa-chart-line"></i>
                         <span>Investments</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link" onclick="alert('Statements coming soon'); return false;">
+                    <a href="statements.html" class="nav-link">
                         <i class="fas fa-file-alt"></i>
                         <span>Statements</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link" onclick="alert('Settings coming soon'); return false;">
+                    <a href="settings.html" class="nav-link">
                         <i class="fas fa-cog"></i>
                         <span>Settings</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link" onclick="alert('Help center coming soon'); return false;">
+                    <a href="help.html" class="nav-link">
                         <i class="fas fa-question-circle"></i>
                         <span>Help</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link logout" id="logoutBtn">
+                    <a href="index.html" class="nav-link logout" id="logoutBtn">
                         <i class="fas fa-sign-out-alt"></i>
                         <span>Logout</span>
                     </a>
@@ -1060,15 +1193,15 @@
         <main class="main-content">
             <div class="welcome-card">
                 <div class="welcome-content">
-                    <h1>Welcome back, Andrew! 👋 <span class="millionaire-badge"><i class="fas fa-crown"></i> Elite Member</span></h1>
-                    <p>Your financial health is exceptional! Total balance: <strong>$5,061.00</strong></p>
+                    <h1>Welcome back, Marius! 👋 <span class="millionaire-badge"><i class="fas fa-crown"></i> Elite Member</span></h1>
+                    <p>Your financial health is exceptional! Total balance: <strong><span id="totalWealthDisplay">$535,045.00</span></strong></p>
                     <div class="date-time" id="currentDateTime"></div>
                 </div>
             </div>
 
             <div class="total-wealth">
                 <span class="total-wealth-label">Total Balance</span>
-                <span class="total-wealth-amount" id="totalWealth">$5,061.00</span>
+                <span class="total-wealth-amount" id="totalWealth">$535,045.00</span>
             </div>
 
             <div class="balance-grid">
@@ -1077,7 +1210,7 @@
                         <i class="fas fa-wallet"></i>
                         <span>Checking</span>
                     </div>
-                    <div class="card-amount" id="checkingBalance">$3,000,000.00</div>
+                    <div class="card-amount" id="checkingBalance">$530,000.00</div>
                     <div class="card-label">**** 4321 • Premium</div>
                 </div>
 
@@ -1090,7 +1223,7 @@
                     <div class="card-label">4.5% APY • Wealth Account</div>
                 </div>
 
-                <div class="balance-card millionaire">
+                <div class="balance-card">
                     <div class="card-header">
                         <i class="fas fa-chart-line"></i>
                         <span>Investments</span>
@@ -1103,10 +1236,45 @@
             <!-- Transfer Section -->
             <div class="transfer-section">
                 <h3 class="section-title"><i class="fas fa-paper-plane" style="margin-right: 8px; color: var(--boa-red);"></i> Send Money</h3>
+                
                 <form id="transferForm" class="transfer-form" onsubmit="return false;">
                     <div class="form-group">
+                        <label class="form-label">Recipient's Bank</label>
+                        <select class="form-select" id="recipientBank" required onchange="handleBankChange()">
+                            <option value="">Select a bank</option>
+                            <option value="JPMorgan Chase Bank">JPMorgan Chase Bank</option>
+                            <option value="Bank of America">Bank of America</option>
+                            <option value="Wells Fargo Bank">Wells Fargo Bank</option>
+                            <option value="Citibank">Citibank</option>
+                            <option value="U.S. Bank">U.S. Bank</option>
+                            <option value="PNC Bank">PNC Bank</option>
+                            <option value="Truist Bank">Truist Bank</option>
+                            <option value="Goldman Sachs Bank">Goldman Sachs Bank</option>
+                            <option value="Capital One">Capital One</option>
+                            <option value="TD Bank">TD Bank</option>
+                            <option value="Charles Schwab Bank">Charles Schwab Bank</option>
+                            <option value="Ally Bank">Ally Bank</option>
+                            <option value="HSBC Bank USA">HSBC Bank USA</option>
+                            <option value="American Express National Bank">American Express National Bank</option>
+                            <option value="Fifth Third Bank">Fifth Third Bank</option>
+                            <option value="KeyBank">KeyBank</option>
+                            <option value="Regions Bank">Regions Bank</option>
+                            <option value="Huntington Bank">Huntington Bank</option>
+                            <option value="Santander Bank">Santander Bank</option>
+                            <option value="M&T Bank">M&T Bank</option>
+                            <option value="Others">Others (Please specify)</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Others bank input field (hidden by default) -->
+                    <div class="form-group others-bank-input" id="othersBankField">
+                        <label class="form-label">Enter Bank Name</label>
+                        <input type="text" class="form-input" id="otherBankName" placeholder="Enter your bank name">
+                    </div>
+
+                    <div class="form-group">
                         <label class="form-label">Recipient Account Number</label>
-                        <input type="text" class="form-input" id="recipientAccount" placeholder="Enter 10-digit account number" maxlength="10" pattern="\d{10}" required>
+                        <input type="text" class="form-input" id="recipientAccount" placeholder="Enter account number" maxlength="20" pattern="\d{5,20}" required>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Recipient Name</label>
@@ -1128,27 +1296,27 @@
 
             <h3 class="section-title">Quick Actions</h3>
             <div class="actions-grid">
-                <a href="#" class="action-card" onclick="document.getElementById('transferSection').scrollIntoView({behavior: 'smooth'}); return false;">
+                <a href="transfers.html" class="action-card">
                     <i class="fas fa-exchange-alt"></i>
                     <span>Transfer</span>
                     <small>Send money</small>
                 </a>
-                <a href="#" class="action-card" onclick="alert('Deposit feature coming soon'); return false;">
+                <a href="deposit.html" class="action-card">
                     <i class="fas fa-download"></i>
                     <span>Deposit</span>
                     <small>Add money</small>
                 </a>
-                <a href="#" class="action-card" onclick="alert('Withdraw feature coming soon'); return false;">
+                <a href="withdraw.html" class="action-card">
                     <i class="fas fa-upload"></i>
                     <span>Withdraw</span>
                     <small>Cash out</small>
                 </a>
-                <a href="#" class="action-card" id="subscriptionsBtn">
+                <a href="giftcards.html" class="action-card" id="subscriptionsBtn">
                     <i class="fas fa-gift"></i>
                     <span>Gift Cards</span>
                     <small>Subscriptions</small>
                 </a>
-                <a href="#" class="action-card" onclick="alert('Statements coming soon'); return false;">
+                <a href="statements.html" class="action-card">
                     <i class="fas fa-file-invoice"></i>
                     <span>Statements</span>
                     <small>View history</small>
@@ -1162,116 +1330,262 @@
                 </div>
 
                 <div class="transaction-list" id="transactionsList">
-                    <div class="transaction-item">
-                        <div class="transaction-left">
-                            <div class="transaction-icon">
-                                <i class="fas fa-building"></i>
-                            </div>
-                            <div class="transaction-details">
-                                <h4>Salary Deposit</h4>
-                                <p>From: Employer • March 15, 2024</p>
-                            </div>
-                        </div>
-                        <div class="transaction-amount">
-                            <div class="amount positive">+$25,000.00</div>
-                            <div class="date">March 15, 2024</div>
-                        </div>
-                    </div>
-
-                    <div class="transaction-item">
-                        <div class="transaction-left">
-                            <div class="transaction-icon">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <div class="transaction-details">
-                                <h4>Dividend Payment</h4>
-                                <p>From: Investment Portfolio • March 14, 2024</p>
-                            </div>
-                        </div>
-                        <div class="transaction-amount">
-                            <div class="amount positive">+$3,250.75</div>
-                            <div class="date">March 14, 2024</div>
-                        </div>
-                    </div>
-
-                    <div class="transaction-item">
-                        <div class="transaction-left">
-                            <div class="transaction-icon">
-                                <i class="fas fa-university"></i>
-                            </div>
-                            <div class="transaction-details">
-                                <h4>Interest Payment</h4>
-                                <p>From: Savings Account • March 13, 2024</p>
-                            </div>
-                        </div>
-                        <div class="transaction-amount">
-                            <div class="amount positive">+$4,500.00</div>
-                            <div class="date">March 13, 2024</div>
-                        </div>
-                    </div>
-
-                    <div class="transaction-item">
-                        <div class="transaction-left">
-                            <div class="transaction-icon">
-                                <i class="fas fa-home"></i>
-                            </div>
-                            <div class="transaction-details">
-                                <h4>Property Management</h4>
-                                <p>To: Real Estate Services • March 12, 2024</p>
-                            </div>
-                        </div>
-                        <div class="transaction-amount">
-                            <div class="amount negative">-$5,200.00</div>
-                            <div class="date">March 12, 2024</div>
-                        </div>
-                    </div>
-
-                    <div class="transaction-item">
-                        <div class="transaction-left">
-                            <div class="transaction-icon">
-                                <i class="fas fa-car"></i>
-                            </div>
-                            <div class="transaction-details">
-                                <h4>Vehicle Lease</h4>
-                                <p>To: Luxury Auto • March 10, 2024</p>
-                            </div>
-                        </div>
-                        <div class="transaction-amount">
-                            <div class="amount negative">-$1,800.00</div>
-                            <div class="date">March 10, 2024</div>
-                        </div>
-                    </div>
+                    <!-- Transactions will be loaded dynamically from localStorage -->
                 </div>
             </div>
         </main>
     </div>
 
     <script>
-        // Hardcoded user data
-        const userData = {
-            fullName: 'Gonzalez Darmain',
-            email: 'gonzalez@example.com',
-            username: 'gonzalez.d',
+        // Default user data - initial balances
+        const defaultUserData = {
+            fullName: 'Marius Robinson',
+            email: 'marius.robinson@gmail.com',
+            username: '@mariusrobinson',
             accounts: {
-                checking: 3000000.00,
+                checking: 530000.00,
                 savings: 5045.00,
                 investments: 0.00
             },
-            totalBalance: 5061.00
+            totalBalance: 535045.00
         };
 
+        // Load user data from localStorage or use defaults
+        function loadUserData() {
+            const savedUserData = localStorage.getItem('userData');
+            if (savedUserData) {
+                return JSON.parse(savedUserData);
+            } else {
+                // Save default user data to localStorage
+                localStorage.setItem('userData', JSON.stringify(defaultUserData));
+                return defaultUserData;
+            }
+        }
+
+        // Save user data to localStorage
+        function saveUserData(userData) {
+            localStorage.setItem('userData', JSON.stringify(userData));
+        }
+
+        // Initialize userData from localStorage
+        let userData = loadUserData();
+
+        // Authorized users database - 5 users with their account numbers (varied lengths) and banks
+        const authorizedUsers = [
+            {
+                name: 'John Smith',
+                accountNumber: '7290116738', // 10 digits
+                bank: 'JPMorgan Chase Bank'
+            },
+            {
+                name: 'Sarah Johnson',
+                accountNumber: '90991722345', // 11 digits
+                bank: 'Bank of America'
+            },
+            {
+                name: 'Michael Chen',
+                accountNumber: '55500653617', // 11 digits
+                bank: 'Wells Fargo Bank'
+            },
+            {
+                name: 'Emily Rodriguez',
+                accountNumber: '62901667277', // 11 digits
+                bank: 'Citibank'
+            },
+            {
+                name: 'David Kim',
+                accountNumber: '86110407201', // 11 digits
+                bank: 'Capital One'
+            }
+        ];
+
+        // 10 Hardcoded transactions for transaction history
+        const defaultTransactions = [
+            {
+                id: 1,
+                description: 'Salary Deposit',
+                details: 'From: Tech Corp Inc.',
+                amount: 12500.00,
+                type: 'positive',
+                date: 'Feb 09, 2026',
+                icon: 'building'
+            },
+            {
+                id: 2,
+                description: 'Dividend Payment',
+                details: 'From: Apple Inc. (AAPL)',
+                amount: 3250.75,
+                type: 'positive',
+                date: 'Jan 14, 2026',
+                icon: 'chart-line'
+            },
+            {
+                id: 3,
+                description: 'Interest Payment',
+                details: 'From: Savings Account',
+                amount: 4500.00,
+                type: 'positive',
+                date: 'Jan 13, 2026',
+                icon: 'university'
+            },
+            {
+                id: 4,
+                description: 'Property Management',
+                details: 'To: Real Estate Services',
+                amount: 5200.00,
+                type: 'negative',
+                date: 'Dec 12, 2025',
+                icon: 'home'
+            },
+            {
+                id: 5,
+                description: 'Vehicle Lease',
+                details: 'To: Luxury Auto',
+                amount: 1800.00,
+                type: 'negative',
+                date: 'Dec 10, 2025',
+                icon: 'car'
+            },
+            {
+                id: 6,
+                description: 'Transfer to John Smith',
+                details: 'To: John Smith (JPMorgan Chase)',
+                amount: 2500.00,
+                type: 'negative',
+                date: 'Dec 08, 2025',
+                icon: 'paper-plane'
+            },
+            {
+                id: 7,
+                description: 'Utility Bill Payment',
+                details: 'To: Energy Electric Co.',
+                amount: 345.67,
+                type: 'negative',
+                date: 'Dec 05, 2025',
+                icon: 'bolt'
+            },
+            {
+                id: 8,
+                description: 'Investment Dividend',
+                details: 'From: Microsoft Corp. (MSFT)',
+                amount: 1875.50,
+                type: 'positive',
+                date: 'Dec 03, 2025',
+                icon: 'chart-line'
+            },
+            {
+                id: 9,
+                description: 'Transfer from Sarah Johnson',
+                details: 'From: Sarah Johnson (Bank of America)',
+                amount: 1500.00,
+                type: 'positive',
+                date: 'Nov 28, 2025',
+                icon: 'paper-plane'
+            },
+            {
+                id: 10,
+                description: 'Credit Card Payment',
+                details: 'To: Capital One Card Services',
+                amount: 2750.25,
+                type: 'negative',
+                date: 'Nov 25, 2025',
+                icon: 'credit-card'
+            }
+        ];
+
+        // Load transactions from localStorage or use defaults
+        function loadTransactions() {
+            const savedTransactions = localStorage.getItem('transactions');
+            if (savedTransactions) {
+                return JSON.parse(savedTransactions);
+            } else {
+                // Save default transactions to localStorage
+                localStorage.setItem('transactions', JSON.stringify(defaultTransactions));
+                return defaultTransactions;
+            }
+        }
+
+        // Save transaction to localStorage
+        function saveTransaction(transaction) {
+            const transactions = loadTransactions();
+            // Generate new ID
+            const newId = transactions.length > 0 ? Math.max(...transactions.map(t => t.id)) + 1 : 1;
+            transaction.id = newId;
+            transactions.unshift(transaction); // Add to beginning
+            // Keep only last 20 transactions to avoid too many
+            const recentTransactions = transactions.slice(0, 20);
+            localStorage.setItem('transactions', JSON.stringify(recentTransactions));
+            return recentTransactions;
+        }
+
+        // Render transactions to the page
+        function renderTransactions() {
+            const transactions = loadTransactions();
+            const transactionsList = document.getElementById('transactionsList');
+            
+            if (transactions.length === 0) {
+                transactionsList.innerHTML = '<div style="text-align: center; padding: 30px; color: var(--gray-600);">No transactions yet</div>';
+                return;
+            }
+
+            transactionsList.innerHTML = transactions.map(transaction => {
+                const iconClass = transaction.icon || 'paper-plane';
+                const amountClass = transaction.type === 'positive' ? 'positive' : 'negative';
+                const amountPrefix = transaction.type === 'positive' ? '+' : '-';
+                
+                return `
+                    <div class="transaction-item">
+                        <div class="transaction-left">
+                            <div class="transaction-icon">
+                                <i class="fas fa-${iconClass}"></i>
+                            </div>
+                            <div class="transaction-details">
+                                <h4>${transaction.description}</h4>
+                                <p>${transaction.details} • ${transaction.date}</p>
+                            </div>
+                        </div>
+                        <div class="transaction-amount">
+                            <div class="amount ${amountClass}">${amountPrefix}$${formatCurrencyForDisplay(transaction.amount)}</div>
+                            <div class="date">${transaction.date}</div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Helper function to format currency without $ sign (for display)
+        function formatCurrencyForDisplay(amount) {
+            return amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+        }
+
         // Update UI with user data
-        document.getElementById('userName').textContent = userData.fullName;
-        document.getElementById('userInitials').textContent = 'GD';
+        function updateUserUI() {
+            document.getElementById('userName').textContent = userData.fullName;
+            
+            // Get initials
+            const nameParts = userData.fullName.split(' ');
+            const initials = nameParts.map(part => part.charAt(0)).join('').toUpperCase();
+            document.getElementById('userInitials').textContent = initials;
+            
+            document.getElementById('checkingBalance').textContent = formatCurrency(userData.accounts.checking);
+            document.getElementById('savingsBalance').textContent = formatCurrency(userData.accounts.savings);
+            document.getElementById('investmentsBalance').textContent = formatCurrency(userData.accounts.investments);
+            
+            // Update total wealth (checking + savings + investments)
+            userData.totalBalance = userData.accounts.checking + userData.accounts.savings + userData.accounts.investments;
+            document.getElementById('totalWealth').textContent = formatCurrency(userData.totalBalance);
+            document.getElementById('totalWealthDisplay').textContent = formatCurrency(userData.totalBalance);
+            
+            // Save updated user data to localStorage
+            saveUserData(userData);
+        }
         
         function formatCurrency(amount) {
             return '$' + amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
         }
 
-        document.getElementById('checkingBalance').textContent = formatCurrency(userData.accounts.checking);
-        document.getElementById('savingsBalance').textContent = formatCurrency(userData.accounts.savings);
-        document.getElementById('investmentsBalance').textContent = formatCurrency(userData.accounts.investments);
-        document.getElementById('totalWealth').textContent = formatCurrency(userData.totalBalance);
+        // Initial UI update
+        updateUserUI();
 
         // Update date and time
         function updateDateTime() {
@@ -1306,9 +1620,22 @@
             overlay.classList.remove('active');
         });
 
+        // Handle bank selection change
+        function handleBankChange() {
+            const bankSelect = document.getElementById('recipientBank');
+            const othersField = document.getElementById('othersBankField');
+            
+            if (bankSelect.value === 'Others') {
+                othersField.classList.add('show');
+            } else {
+                othersField.classList.remove('show');
+            }
+        }
+
         // Transfer variables
         let transferData = {};
         let progressInterval = null;
+        let isAuthorizedUser = false;
 
         // Modal functions
         function showLoadingModal() {
@@ -1363,7 +1690,7 @@
 
         document.getElementById('subscriptionsBtn').addEventListener('click', function(e) {
             e.preventDefault();
-            showGiftcardModal();
+            window.location.href = 'giftcards.html';
         });
 
         document.getElementById('purchaseGiftCardBtn').addEventListener('click', function() {
@@ -1375,18 +1702,47 @@
             }, 3000);
         });
 
+        // Check if user is authorized
+        function isUserAuthorized(accountNumber, name, bank) {
+            return authorizedUsers.some(user => 
+                user.accountNumber === accountNumber && 
+                user.name.toLowerCase() === name.toLowerCase() &&
+                user.bank === bank
+            );
+        }
+
         // Transfer form handling - Show summary first
         document.getElementById('transferForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
+            const recipientBank = document.getElementById('recipientBank').value;
+            const otherBankName = document.getElementById('otherBankName').value;
             const recipientAccount = document.getElementById('recipientAccount').value;
             const recipientName = document.getElementById('recipientName').value;
             const amount = parseFloat(document.getElementById('transferAmount').value);
             const description = document.getElementById('transferDescription').value || 'Transfer';
 
+            // Validate bank selection
+            if (!recipientBank) {
+                showErrorModal('Please select a recipient bank');
+                return;
+            }
+
+            // Validate other bank input if Others is selected
+            if (recipientBank === 'Others' && !otherBankName) {
+                showErrorModal('Please enter the bank name');
+                return;
+            }
+
             // Validate inputs
-            if (!recipientAccount || recipientAccount.length !== 10) {
-                showErrorModal('Please enter a valid 10-digit account number');
+            if (!recipientAccount || recipientAccount.length < 5 || recipientAccount.length > 20) {
+                showErrorModal('Please enter a valid account number (5-20 digits)');
+                return;
+            }
+
+            // Validate that account number contains only digits
+            if (!/^\d+$/.test(recipientAccount)) {
+                showErrorModal('Account number must contain only digits');
                 return;
             }
 
@@ -1405,15 +1761,24 @@
                 return;
             }
 
+            // Get the final bank name
+            const finalBankName = recipientBank === 'Others' ? otherBankName : recipientBank;
+
+            // Check if user is authorized
+            isAuthorizedUser = isUserAuthorized(recipientAccount, recipientName, finalBankName);
+
             // Store transfer data
             transferData = {
+                bank: finalBankName,
                 account: recipientAccount,
                 name: recipientName,
                 amount: amount,
-                description: description
+                description: description,
+                isAuthorized: isAuthorizedUser
             };
 
             // Update summary modal
+            document.getElementById('summaryBankName').textContent = finalBankName;
             document.getElementById('summaryRecipientName').textContent = recipientName;
             document.getElementById('summaryAccountNumber').textContent = '****' + recipientAccount.slice(-4);
             document.getElementById('summaryDescription').textContent = description;
@@ -1447,64 +1812,59 @@
                 progressBar.style.width = progress + '%';
                 progressPercent.textContent = progress + '%';
                 
-                // At 89%, show error and stop
-                if (progress === 89) {
-                    clearInterval(progressInterval);
-                    progressInterval = null;
-                    
-                    // Small delay to show the 89% before error
-                    setTimeout(() => {
-                        hideLoadingModal();
-                        showErrorModal('Transaction halted: $200 required in Tax account.');
-                    }, 300);
-                }
-                
-                // If we somehow reach 100% (shouldn't happen with halt at 89), just in case
-                if (progress === 100) {
-                    clearInterval(progressInterval);
-                    progressInterval = null;
-                    
-                    setTimeout(() => {
-                        hideLoadingModal();
+                // For authorized users, continue to 100%
+                if (transferData.isAuthorized) {
+                    if (progress === 100) {
+                        clearInterval(progressInterval);
+                        progressInterval = null;
                         
-                        // Update balance
-                        userData.accounts.checking -= transferData.amount;
-                        userData.totalBalance -= transferData.amount;
-                        
-                        document.getElementById('checkingBalance').textContent = formatCurrency(userData.accounts.checking);
-                        document.getElementById('totalWealth').textContent = formatCurrency(userData.totalBalance);
+                        setTimeout(() => {
+                            hideLoadingModal();
+                            
+                            // Update balance
+                            userData.accounts.checking -= transferData.amount;
+                            
+                            // Update UI with new balances
+                            updateUserUI();
 
-                        // Add transaction to list
-                        const transactionsList = document.getElementById('transactionsList');
-                        const newTransaction = document.createElement('div');
-                        newTransaction.className = 'transaction-item';
-                        
-                        const today = new Date();
-                        const formattedDate = today.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-                        
-                        newTransaction.innerHTML = `
-                            <div class="transaction-left">
-                                <div class="transaction-icon">
-                                    <i class="fas fa-paper-plane"></i>
-                                </div>
-                                <div class="transaction-details">
-                                    <h4>${transferData.description}</h4>
-                                    <p>To: ${transferData.name} • ${formattedDate}</p>
-                                </div>
-                            </div>
-                            <div class="transaction-amount">
-                                <div class="amount negative">-${formatCurrency(transferData.amount)}</div>
-                                <div class="date">Today</div>
-                            </div>
-                        `;
-                        
-                        transactionsList.insertBefore(newTransaction, transactionsList.firstChild);
+                            // Create transaction object
+                            const today = new Date();
+                            const formattedDate = today.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+                            
+                            const newTransaction = {
+                                description: transferData.description,
+                                details: `To: ${transferData.name} (${transferData.bank})`,
+                                amount: transferData.amount,
+                                type: 'negative',
+                                date: formattedDate,
+                                icon: 'paper-plane'
+                            };
 
-                        showSuccessModal(`Successfully sent ${formatCurrency(transferData.amount)} to ${transferData.name}`);
+                            // Save to localStorage
+                            saveTransaction(newTransaction);
+                            
+                            // Re-render transactions
+                            renderTransactions();
+
+                            showSuccessModal(`Successfully sent ${formatCurrency(transferData.amount)} to ${transferData.name} at ${transferData.bank}`);
+                            
+                            // Reset form
+                            document.getElementById('transferForm').reset();
+                            document.getElementById('othersBankField').classList.remove('show');
+                        }, 500);
+                    }
+                } else {
+                    // For unauthorized users, stop at 89% with error
+                    if (progress === 89) {
+                        clearInterval(progressInterval);
+                        progressInterval = null;
                         
-                        // Reset form
-                        document.getElementById('transferForm').reset();
-                    }, 500);
+                        // Small delay to show the 89% before error
+                        setTimeout(() => {
+                            hideLoadingModal();
+                            showErrorModal('Recipient account is not authorized for transactions.');
+                        }, 300);
+                    }
                 }
             }, 50); // Update every 50ms for smooth animation
         });
@@ -1525,6 +1885,9 @@
                 });
             }
         });
+
+        // Initial render of transactions
+        renderTransactions();
     </script>
 </body>
 </html>
