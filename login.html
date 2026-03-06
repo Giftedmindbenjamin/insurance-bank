@@ -1115,7 +1115,7 @@
                 });
             } else {
                 errorMessage.classList.add('show');
-                errorText.textContent = 'Invalid username or password. Try: marius.robinson@gmail.com / marius4046';
+                errorText.textContent = 'Invalid username or password.';
                 
                 // Shake animation
                 document.querySelector('.login-card').style.animation = 'shake 0.5s ease';
@@ -1128,7 +1128,7 @@
         // Pre-fill demo credentials hint
         const demoHint = document.createElement('div');
         demoHint.className = 'demo-hint';
-        demoHint.innerHTML = '<i class="fas fa-info-circle"></i> Demo: marius.robinson@gmail.com / marius4046';
+        demoHint.innerHTML = '<i class="fas fa-info-circle"></i> ';
         document.querySelector('.login-card').appendChild(demoHint);
     </script>
 </body>
