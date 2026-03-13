@@ -3,39 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bill Pay - Bank of America</title>
+    <title>Nexbridge Finance | Bill Pay</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         :root {
-            --boa-red: #E31837;
-            --boa-red-dark: #C4122E;
-            --boa-blue: #012169;
-            --boa-blue-dark: #001A54;
+            --nf-deep: #0A2342;        /* signature navy */
+            --nf-accent: #1F7A8C;       /* fresh teal */
+            --nf-accent-dark: #145c6b;
+            --nf-sand: #F8F3E9;         /* warm light background */
             --white: #FFFFFF;
-            --off-white: #F5F7FA;
             --gray-50: #F8FAFC;
             --gray-100: #F1F5F9;
             --gray-200: #E2E8F0;
             --gray-300: #CBD5E1;
-            --gray-600: #475569;
-            --gray-800: #1E293B;
-            --gray-900: #0F172A;
+            --gray-600: #4e5b6e;
+            --gray-800: #1e2b3c;
+            --gray-900: #0F1A2A;
             --success: #10B981;
             --warning: #F59E0B;
-            --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-            --shadow-md: 0 10px 25px -5px rgb(0 0 0 / 0.1);
+            --shadow-sm: 0 4px 12px rgba(10,35,66,0.08);
+            --shadow-md: 0 12px 28px rgba(10,35,66,0.12);
             --transition: all 0.3s ease;
         }
 
         body {
-            background: var(--gray-50);
+            background: var(--nf-sand);
             min-height: 100vh;
         }
 
@@ -80,14 +79,14 @@
         }
 
         .logo i {
-            color: var(--boa-red);
-            font-size: 24px;
+            color: var(--nf-accent);
+            font-size: 26px;
         }
 
         .logo span {
             font-weight: 700;
             font-size: 18px;
-            color: var(--boa-blue);
+            color: var(--nf-deep);
         }
 
         .header-right {
@@ -110,7 +109,7 @@
             position: absolute;
             top: -5px;
             right: -5px;
-            background: var(--boa-red);
+            background: var(--nf-accent);
             color: white;
             font-size: 10px;
             font-weight: 600;
@@ -134,7 +133,7 @@
         .user-avatar {
             width: 36px;
             height: 36px;
-            background: linear-gradient(145deg, var(--boa-blue), var(--boa-red));
+            background: linear-gradient(145deg, var(--nf-deep), var(--nf-accent));
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -159,7 +158,7 @@
 
         .sidebar {
             background: var(--white);
-            border-radius: 24px;
+            border-radius: 30px;
             padding: 20px;
             box-shadow: var(--shadow-sm);
             height: fit-content;
@@ -178,7 +177,7 @@
             align-items: center;
             gap: 12px;
             padding: 12px 16px;
-            border-radius: 16px;
+            border-radius: 18px;
             color: var(--gray-600);
             text-decoration: none;
             font-weight: 500;
@@ -193,12 +192,12 @@
 
         .nav-link:hover {
             background: var(--gray-50);
-            color: var(--boa-red);
+            color: var(--nf-accent);
         }
 
         .nav-link.active {
-            background: rgba(227, 24, 55, 0.1);
-            color: var(--boa-red);
+            background: rgba(31,122,140,0.1);
+            color: var(--nf-accent);
             font-weight: 600;
         }
 
@@ -207,6 +206,10 @@
             border-top: 1px solid var(--gray-200);
             padding-top: 20px;
             color: var(--gray-600);
+        }
+
+        .nav-link.logout:hover {
+            color: var(--nf-accent);
         }
 
         .main-content {
@@ -223,8 +226,8 @@
         }
 
         .bill-summary {
-            background: linear-gradient(145deg, var(--boa-blue), var(--boa-blue-dark));
-            border-radius: 24px;
+            background: linear-gradient(145deg, var(--nf-deep), #123456);
+            border-radius: 30px;
             padding: 24px;
             color: white;
             margin-bottom: 30px;
@@ -254,7 +257,7 @@
 
         .payees-section {
             background: var(--white);
-            border-radius: 24px;
+            border-radius: 30px;
             padding: 24px;
             box-shadow: var(--shadow-sm);
             margin-bottom: 30px;
@@ -265,29 +268,32 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .section-header h3 {
-            font-size: 18px;
+            font-size: 20px;
             color: var(--gray-900);
         }
 
         .btn-add {
-            background: rgba(227, 24, 55, 0.1);
-            color: var(--boa-red);
+            background: rgba(31,122,140,0.1);
+            color: var(--nf-accent);
             border: none;
             padding: 10px 20px;
-            border-radius: 30px;
+            border-radius: 40px;
             font-weight: 600;
             cursor: pointer;
             display: flex;
             align-items: center;
             gap: 8px;
             transition: var(--transition);
+            font-size: 14px;
         }
 
         .btn-add:hover {
-            background: var(--boa-red);
+            background: var(--nf-accent);
             color: white;
         }
 
@@ -299,7 +305,7 @@
 
         .payee-card {
             background: var(--gray-50);
-            border-radius: 20px;
+            border-radius: 24px;
             padding: 20px;
             display: flex;
             align-items: center;
@@ -310,19 +316,20 @@
 
         .payee-card:hover {
             background: var(--white);
-            border-color: var(--boa-red);
+            border-color: var(--nf-accent);
             transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
 
         .payee-icon {
             width: 56px;
             height: 56px;
-            background: rgba(227, 24, 55, 0.1);
-            border-radius: 18px;
+            background: rgba(31,122,140,0.1);
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--boa-red);
+            color: var(--nf-accent);
             font-size: 24px;
         }
 
@@ -350,7 +357,7 @@
 
         .pay-btn {
             padding: 8px 16px;
-            background: var(--boa-red);
+            background: var(--nf-accent);
             color: white;
             border: none;
             border-radius: 30px;
@@ -361,7 +368,8 @@
         }
 
         .pay-btn:hover {
-            background: var(--boa-red-dark);
+            background: var(--nf-accent-dark);
+            transform: translateY(-1px);
         }
 
         .schedule-btn {
@@ -382,7 +390,7 @@
 
         .upcoming-bills {
             background: var(--white);
-            border-radius: 24px;
+            border-radius: 30px;
             padding: 24px;
             box-shadow: var(--shadow-sm);
         }
@@ -393,6 +401,8 @@
             justify-content: space-between;
             padding: 16px 0;
             border-bottom: 1px solid var(--gray-100);
+            gap: 12px;
+            flex-wrap: wrap;
         }
 
         .bill-item:last-child {
@@ -403,6 +413,8 @@
             display: flex;
             align-items: center;
             gap: 15px;
+            flex: 2;
+            min-width: 200px;
         }
 
         .bill-details h4 {
@@ -419,12 +431,13 @@
         .bill-amount {
             font-weight: 700;
             color: var(--gray-900);
+            min-width: 80px;
         }
 
         .bill-date {
             font-size: 13px;
             color: var(--gray-600);
-            margin-right: 20px;
+            min-width: 100px;
         }
 
         .bill-status {
@@ -432,6 +445,8 @@
             border-radius: 30px;
             font-size: 12px;
             font-weight: 600;
+            min-width: 80px;
+            text-align: center;
         }
 
         .status-pending {
@@ -440,8 +455,8 @@
         }
 
         .status-upcoming {
-            background: rgba(227, 24, 55, 0.1);
-            color: var(--boa-red);
+            background: rgba(31,122,140,0.1);
+            color: var(--nf-accent);
         }
 
         @media (max-width: 768px) {
@@ -505,11 +520,15 @@
             .bill-item {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 10px;
             }
 
             .bill-info {
                 width: 100%;
+            }
+
+            .bill-item > div:last-child {
+                width: 100%;
+                justify-content: space-between;
             }
         }
     </style>
@@ -522,8 +541,8 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <a href="dashboard.html" class="logo">
-                    <i class="fas fa-university"></i>
-                    <span>Bank of America</span>
+                    <i class="fas fa-arrow-trend-up"></i>
+                    <span>Nexbridge Finance</span>
                 </a>
             </div>
             <div class="header-right">
@@ -610,28 +629,28 @@
             </div>
 
             <div class="bill-summary">
-                <h3 style="margin-bottom: 20px;">Monthly Summary</h3>
+                <h3 style="margin-bottom: 20px;">Monthly summary</h3>
                 <div class="summary-grid">
                     <div class="summary-item">
                         <div class="summary-value">$4,850</div>
-                        <div class="summary-label">Total Due</div>
+                        <div class="summary-label">Total due</div>
                     </div>
                     <div class="summary-item">
                         <div class="summary-value">5</div>
-                        <div class="summary-label">Bills Due</div>
+                        <div class="summary-label">Bills due</div>
                     </div>
                     <div class="summary-item">
                         <div class="summary-value">$8,250</div>
-                        <div class="summary-label">Paid This Month</div>
+                        <div class="summary-label">Paid this month</div>
                     </div>
                 </div>
             </div>
 
             <div class="payees-section">
                 <div class="section-header">
-                    <h3><i class="fas fa-users" style="margin-right: 8px; color: var(--boa-red);"></i> Your Payees</h3>
-                    <button class="btn-add" onclick="alert('Add new payee feature coming soon!')">
-                        <i class="fas fa-plus"></i> Add Payee
+                    <h3><i class="fas fa-users" style="margin-right: 8px; color: var(--nf-accent);"></i> Your payees</h3>
+                    <button class="btn-add" onclick="alert('✨ Add new payee — coming soon!')">
+                        <i class="fas fa-plus"></i> Add payee
                     </button>
                 </div>
 
@@ -644,8 +663,8 @@
                             <div class="payee-name">Energy Electric</div>
                             <div class="payee-account">Account: 9876543210</div>
                             <div class="payee-actions">
-                                <button class="pay-btn" onclick="alert('Pay Energy Electric bill')">Pay Now</button>
-                                <button class="schedule-btn" onclick="alert('Schedule payment')">Schedule</button>
+                                <button class="pay-btn" onclick="alert('⚡ Pay Energy Electric')">Pay now</button>
+                                <button class="schedule-btn" onclick="alert('📅 Schedule payment')">Schedule</button>
                             </div>
                         </div>
                     </div>
@@ -658,8 +677,8 @@
                             <div class="payee-name">City Water</div>
                             <div class="payee-account">Account: 1234567890</div>
                             <div class="payee-actions">
-                                <button class="pay-btn" onclick="alert('Pay City Water bill')">Pay Now</button>
-                                <button class="schedule-btn" onclick="alert('Schedule payment')">Schedule</button>
+                                <button class="pay-btn" onclick="alert('💧 Pay City Water')">Pay now</button>
+                                <button class="schedule-btn" onclick="alert('📅 Schedule payment')">Schedule</button>
                             </div>
                         </div>
                     </div>
@@ -672,8 +691,8 @@
                             <div class="payee-name">Spectrum Internet</div>
                             <div class="payee-account">Account: 5551234567</div>
                             <div class="payee-actions">
-                                <button class="pay-btn" onclick="alert('Pay Spectrum bill')">Pay Now</button>
-                                <button class="schedule-btn" onclick="alert('Schedule payment')">Schedule</button>
+                                <button class="pay-btn" onclick="alert('🌐 Pay Spectrum')">Pay now</button>
+                                <button class="schedule-btn" onclick="alert('📅 Schedule payment')">Schedule</button>
                             </div>
                         </div>
                     </div>
@@ -686,8 +705,8 @@
                             <div class="payee-name">Verizon Wireless</div>
                             <div class="payee-account">Account: 7778889999</div>
                             <div class="payee-actions">
-                                <button class="pay-btn" onclick="alert('Pay Verizon bill')">Pay Now</button>
-                                <button class="schedule-btn" onclick="alert('Schedule payment')">Schedule</button>
+                                <button class="pay-btn" onclick="alert('📱 Pay Verizon')">Pay now</button>
+                                <button class="schedule-btn" onclick="alert('📅 Schedule payment')">Schedule</button>
                             </div>
                         </div>
                     </div>
@@ -697,11 +716,11 @@
                             <i class="fas fa-home"></i>
                         </div>
                         <div class="payee-info">
-                            <div class="payee-name">Mortgage Payment</div>
+                            <div class="payee-name">Mortgage payment</div>
                             <div class="payee-account">Loan: 4445556666</div>
                             <div class="payee-actions">
-                                <button class="pay-btn" onclick="alert('Pay mortgage')">Pay Now</button>
-                                <button class="schedule-btn" onclick="alert('Schedule payment')">Schedule</button>
+                                <button class="pay-btn" onclick="alert('🏠 Pay mortgage')">Pay now</button>
+                                <button class="schedule-btn" onclick="alert('📅 Schedule payment')">Schedule</button>
                             </div>
                         </div>
                     </div>
@@ -714,8 +733,8 @@
                             <div class="payee-name">Capital One Card</div>
                             <div class="payee-account">Card: 3334445555</div>
                             <div class="payee-actions">
-                                <button class="pay-btn" onclick="alert('Pay Capital One')">Pay Now</button>
-                                <button class="schedule-btn" onclick="alert('Schedule payment')">Schedule</button>
+                                <button class="pay-btn" onclick="alert('💳 Pay Capital One')">Pay now</button>
+                                <button class="schedule-btn" onclick="alert('📅 Schedule payment')">Schedule</button>
                             </div>
                         </div>
                     </div>
@@ -724,8 +743,8 @@
 
             <div class="upcoming-bills">
                 <div class="section-header">
-                    <h3><i class="far fa-calendar-alt" style="margin-right: 8px; color: var(--boa-red);"></i> Upcoming Bills</h3>
-                    <a href="#" class="btn-add" style="text-decoration: none;" onclick="alert('View all bills')">View All</a>
+                    <h3><i class="far fa-calendar-alt" style="margin-right: 8px; color: var(--nf-accent);"></i> Upcoming bills</h3>
+                    <a href="#" class="btn-add" style="text-decoration: none;" onclick="alert('📋 View all bills')">View all</a>
                 </div>
 
                 <div class="bill-item">
@@ -738,7 +757,7 @@
                             <p>Due in 3 days</p>
                         </div>
                     </div>
-                    <div style="display: flex; align-items: center; gap: 20px;">
+                    <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
                         <span class="bill-amount">$245.00</span>
                         <span class="bill-date">Mar 23, 2024</span>
                         <span class="bill-status status-pending">Pending</span>
@@ -755,7 +774,7 @@
                             <p>Due in 5 days</p>
                         </div>
                     </div>
-                    <div style="display: flex; align-items: center; gap: 20px;">
+                    <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
                         <span class="bill-amount">$85.00</span>
                         <span class="bill-date">Mar 25, 2024</span>
                         <span class="bill-status status-pending">Pending</span>
@@ -772,7 +791,7 @@
                             <p>Due in 7 days</p>
                         </div>
                     </div>
-                    <div style="display: flex; align-items: center; gap: 20px;">
+                    <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
                         <span class="bill-amount">$89.99</span>
                         <span class="bill-date">Mar 27, 2024</span>
                         <span class="bill-status status-upcoming">Upcoming</span>
@@ -789,7 +808,7 @@
                             <p>Due in 10 days</p>
                         </div>
                     </div>
-                    <div style="display: flex; align-items: center; gap: 20px;">
+                    <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
                         <span class="bill-amount">$145.00</span>
                         <span class="bill-date">Mar 30, 2024</span>
                         <span class="bill-status status-upcoming">Upcoming</span>
@@ -802,11 +821,11 @@
                             <i class="fas fa-home"></i>
                         </div>
                         <div class="bill-details">
-                            <h4>Mortgage Payment</h4>
+                            <h4>Mortgage payment</h4>
                             <p>Due in 12 days</p>
                         </div>
                     </div>
-                    <div style="display: flex; align-items: center; gap: 20px;">
+                    <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
                         <span class="bill-amount">$4,250.00</span>
                         <span class="bill-date">Apr 1, 2024</span>
                         <span class="bill-status status-upcoming">Upcoming</span>
@@ -817,19 +836,29 @@
     </div>
 
     <script>
-        // Mobile menu
+        // Mobile menu toggle
         const menuToggle = document.getElementById('menuToggle');
         const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('sidebarOverlay');
 
-        menuToggle.addEventListener('click', () => {
-            sidebar.classList.toggle('active');
-            overlay.classList.toggle('active');
-        });
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                sidebar.classList.toggle('active');
+                overlay.classList.toggle('active');
+            });
+        }
 
-        overlay.addEventListener('click', () => {
-            sidebar.classList.remove('active');
-            overlay.classList.remove('active');
+        if (overlay) {
+            overlay.addEventListener('click', () => {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+        }
+
+        // simple logout simulation (keep consistent with other pages)
+        document.querySelector('.nav-link.logout')?.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = 'index.html';
         });
     </script>
 </body>

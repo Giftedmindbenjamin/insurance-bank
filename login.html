@@ -3,30 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Sign In - Bank of America</title>
+    <title>Nexbridge Finance | Sign In</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Keep all existing CSS exactly as before */
+        /* all original css preserved but colors and brand names replaced */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         :root {
-            --boa-red: #E31837;
-            --boa-red-dark: #C4122E;
-            --boa-blue: #012169;
-            --boa-blue-dark: #001A54;
+            --nf-deep: #0A2342;        /* signature navy */
+            --nf-accent: #1F7A8C;       /* fresh teal */
+            --nf-accent-dark: #145c6b;
+            --nf-sand: #F8F3E9;         /* warm light background */
             --white: #FFFFFF;
-            --off-white: #F5F7FA;
             --gray-50: #F8FAFC;
             --gray-100: #F1F5F9;
             --gray-200: #E2E8F0;
             --gray-300: #CBD5E1;
-            --gray-600: #475569;
-            --gray-900: #0F172A;
+            --gray-600: #4e5b6e;
+            --gray-900: #0F1A2A;
             --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.1);
             --shadow-md: 0 10px 25px -5px rgb(0 0 0 / 0.1);
             --shadow-lg: 0 25px 50px -12px rgb(0 0 0 / 0.25);
@@ -35,7 +34,7 @@
 
         body {
             min-height: 100vh;
-            background: linear-gradient(145deg, var(--boa-blue) 0%, #021B47 50%, var(--boa-red) 100%);
+            background: linear-gradient(145deg, var(--nf-deep) 0%, #123456 50%, var(--nf-accent) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -72,14 +71,8 @@
         }
 
         @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .logo-link {
@@ -115,7 +108,7 @@
         }
 
         .logo-text span {
-            color: var(--boa-red);
+            color: var(--nf-accent);
             background: white;
             padding: 2px 6px;
             border-radius: 6px;
@@ -140,14 +133,8 @@
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .card-header {
@@ -156,7 +143,7 @@
         }
 
         .card-header h2 {
-            color: var(--boa-blue);
+            color: var(--nf-deep);
             font-size: 28px;
             font-weight: 700;
             margin-bottom: 6px;
@@ -191,7 +178,7 @@
         .input-icon {
             position: absolute;
             left: 16px;
-            color: var(--boa-red);
+            color: var(--nf-accent);
             font-size: 16px;
             z-index: 2;
             opacity: 0.7;
@@ -212,8 +199,8 @@
 
         .form-input:focus {
             outline: none;
-            border-color: var(--boa-red);
-            box-shadow: 0 0 0 4px rgba(227, 24, 55, 0.1);
+            border-color: var(--nf-accent);
+            box-shadow: 0 0 0 4px rgba(31,122,140,0.1);
         }
 
         .form-input::placeholder {
@@ -237,7 +224,7 @@
         }
 
         .toggle-password:hover {
-            color: var(--boa-red);
+            color: var(--nf-accent);
         }
 
         .form-options {
@@ -261,7 +248,7 @@
         .remember-me input[type="checkbox"] {
             width: 18px;
             height: 18px;
-            accent-color: var(--boa-red);
+            accent-color: var(--nf-accent);
             cursor: pointer;
         }
 
@@ -272,7 +259,7 @@
         }
 
         .forgot-link {
-            color: var(--boa-red);
+            color: var(--nf-accent);
             text-decoration: none;
             font-size: 14px;
             font-weight: 600;
@@ -282,13 +269,13 @@
         }
 
         .forgot-link:hover {
-            background: rgba(227, 24, 55, 0.05);
+            background: rgba(31,122,140,0.05);
         }
 
         .btn-login {
             width: 100%;
             padding: 18px 24px;
-            background: linear-gradient(145deg, var(--boa-red), var(--boa-red-dark));
+            background: linear-gradient(145deg, var(--nf-accent), var(--nf-accent-dark));
             color: white;
             border: none;
             border-radius: 30px;
@@ -300,18 +287,18 @@
             align-items: center;
             justify-content: center;
             gap: 12px;
-            box-shadow: 0 8px 20px rgba(227, 24, 55, 0.3);
+            box-shadow: 0 8px 20px rgba(31,122,140,0.3);
             -webkit-tap-highlight-color: transparent;
         }
 
         .btn-login:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 25px rgba(227, 24, 55, 0.4);
+            box-shadow: 0 12px 25px rgba(31,122,140,0.4);
         }
 
         .btn-login:active {
             transform: translateY(1px);
-            box-shadow: 0 4px 12px rgba(227, 24, 55, 0.3);
+            box-shadow: 0 4px 12px rgba(31,122,140,0.3);
         }
 
         .btn-login i {
@@ -366,8 +353,8 @@
         }
 
         .btn-social:hover {
-            border-color: var(--boa-red);
-            background: var(--off-white);
+            border-color: var(--nf-accent);
+            background: var(--gray-50);
             transform: translateY(-2px);
         }
 
@@ -396,19 +383,19 @@
         }
 
         .signup-link {
-            color: var(--boa-red);
+            color: var(--nf-accent);
             text-decoration: none;
             font-weight: 700;
             transition: var(--transition);
             margin-left: 8px;
             padding: 4px 12px;
             border-radius: 20px;
-            background: rgba(227, 24, 55, 0.1);
+            background: rgba(31,122,140,0.1);
             display: inline-block;
         }
 
         .signup-link:hover {
-            background: rgba(227, 24, 55, 0.15);
+            background: rgba(31,122,140,0.15);
         }
 
         .security-badge {
@@ -437,8 +424,8 @@
         }
 
         .error-message {
-            background: rgba(227, 24, 55, 0.1);
-            color: var(--boa-red);
+            background: rgba(31,122,140,0.1);
+            color: var(--nf-accent-dark);
             padding: 16px;
             border-radius: 24px;
             margin-bottom: 24px;
@@ -447,7 +434,7 @@
             display: none;
             align-items: center;
             gap: 10px;
-            border: 2px solid rgba(227, 24, 55, 0.2);
+            border: 2px solid rgba(31,122,140,0.2);
         }
 
         .error-message.show {
@@ -489,8 +476,8 @@
         }
 
         .biometric-btn:hover {
-            border-color: var(--boa-red);
-            color: var(--boa-red);
+            border-color: var(--nf-accent);
+            color: var(--nf-accent);
             transform: translateY(-2px);
         }
 
@@ -499,21 +486,21 @@
         }
 
         .demo-hint {
-            background: rgba(227, 24, 55, 0.1);
-            color: var(--boa-red);
+            background: rgba(31,122,140,0.1);
+            color: var(--nf-accent-dark);
             padding: 12px;
             border-radius: 24px;
             margin-top: 20px;
             font-size: 14px;
             text-align: center;
-            border: 1px dashed var(--boa-red);
+            border: 1px dashed var(--nf-accent);
         }
 
         .demo-hint i {
             margin-right: 8px;
         }
 
-        /* Loading Modal Styles */
+        /* Loading Modal Styles (preserved) */
         .modal {
             display: none;
             position: fixed;
@@ -544,20 +531,14 @@
         }
 
         @keyframes modalPop {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         .modal-icon {
             font-size: 60px;
             margin-bottom: 20px;
-            color: var(--boa-blue);
+            color: var(--nf-deep);
         }
 
         .modal-icon.loading {
@@ -583,7 +564,6 @@
             font-size: 15px;
         }
 
-        /* Progress bar styles */
         .progress-container {
             width: 100%;
             background-color: var(--gray-200);
@@ -595,7 +575,7 @@
         
         .progress-bar {
             height: 10px;
-            background: linear-gradient(90deg, var(--boa-blue), var(--boa-red));
+            background: linear-gradient(90deg, var(--nf-deep), var(--nf-accent));
             border-radius: 30px;
             width: 0%;
             transition: width 0.1s linear;
@@ -603,7 +583,7 @@
         
         .progress-percent {
             font-weight: 700;
-            color: var(--boa-red);
+            color: var(--nf-accent);
             margin-bottom: 10px;
             font-size: 18px;
         }
@@ -637,154 +617,52 @@
         .timer-text {
             font-size: 20px;
             font-weight: 700;
-            color: var(--boa-red);
+            color: var(--nf-accent);
             margin: 15px 0;
         }
 
         @media (max-width: 480px) {
-            body {
-                padding: 12px;
-            }
-
-            .login-wrapper {
-                margin: 10px auto;
-            }
-
-            .brand-section {
-                margin-bottom: 24px;
-            }
-
-            .logo-link {
-                padding: 6px 16px;
-            }
-
-            .logo-icon {
-                font-size: 24px;
-            }
-
-            .logo-text {
-                font-size: 20px;
-            }
-
-            .login-card {
-                padding: 24px 20px;
-                border-radius: 32px;
-            }
-
-            .card-header h2 {
-                font-size: 24px;
-            }
-
-            .card-header p {
-                font-size: 14px;
-            }
-
-            .form-input {
-                padding: 14px 14px 14px 44px;
-                font-size: 15px;
-                border-radius: 22px;
-            }
-
-            .input-icon {
-                left: 14px;
-                font-size: 14px;
-            }
-
-            .toggle-password {
-                right: 14px;
-                font-size: 16px;
-            }
-
-            .btn-login {
-                padding: 16px 20px;
-                font-size: 16px;
-            }
-
-            .form-options {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-            }
-
-            .social-login {
-                gap: 8px;
-            }
-
-            .btn-social {
-                padding: 12px;
-                font-size: 14px;
-            }
-
-            .btn-social span {
-                display: none;
-            }
-
-            .btn-social i {
-                font-size: 20px;
-            }
-
-            .security-badge {
-                gap: 12px;
-            }
-
-            .security-badge span {
-                padding: 6px 12px;
-                font-size: 12px;
-            }
-
-            .modal-content {
-                padding: 30px 20px;
-            }
-
-            .modal-icon {
-                font-size: 50px;
-            }
-
-            .modal-title {
-                font-size: 20px;
-            }
-
-            .timer-text {
-                font-size: 18px;
-            }
+            body { padding: 12px; }
+            .login-wrapper { margin: 10px auto; }
+            .brand-section { margin-bottom: 24px; }
+            .logo-link { padding: 6px 16px; }
+            .logo-icon { font-size: 24px; }
+            .logo-text { font-size: 20px; }
+            .login-card { padding: 24px 20px; border-radius: 32px; }
+            .card-header h2 { font-size: 24px; }
+            .card-header p { font-size: 14px; }
+            .form-input { padding: 14px 14px 14px 44px; font-size: 15px; border-radius: 22px; }
+            .input-icon { left: 14px; font-size: 14px; }
+            .toggle-password { right: 14px; font-size: 16px; }
+            .btn-login { padding: 16px 20px; font-size: 16px; }
+            .form-options { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .social-login { gap: 8px; }
+            .btn-social { padding: 12px; font-size: 14px; }
+            .btn-social span { display: none; }
+            .btn-social i { font-size: 20px; }
+            .security-badge { gap: 12px; }
+            .security-badge span { padding: 6px 12px; font-size: 12px; }
+            .modal-content { padding: 30px 20px; }
+            .modal-icon { font-size: 50px; }
+            .modal-title { font-size: 20px; }
+            .timer-text { font-size: 18px; }
         }
 
         @media (max-width: 360px) {
-            .login-card {
-                padding: 20px 16px;
-            }
-
-            .social-login {
-                grid-template-columns: 1fr;
-            }
-
-            .biometric-options {
-                gap: 12px;
-            }
-
-            .biometric-btn {
-                width: 48px;
-                height: 48px;
-                font-size: 20px;
-            }
+            .login-card { padding: 20px 16px; }
+            .social-login { grid-template-columns: 1fr; }
+            .biometric-options { gap: 12px; }
+            .biometric-btn { width: 48px; height: 48px; font-size: 20px; }
         }
 
         @media (hover: none) and (pointer: coarse) {
-            .btn-login,
-            .btn-social,
-            .biometric-btn,
-            .signup-link {
-                min-height: 48px;
-            }
-
-            .form-input {
-                font-size: 16px;
-            }
+            .btn-login, .btn-social, .biometric-btn, .signup-link { min-height: 48px; }
+            .form-input { font-size: 16px; }
         }
     </style>
 </head>
 <body>
-    <!-- Loading Modal -->
+    <!-- Loading Modal (exact same structure, colors updated) -->
     <div class="modal" id="loadingModal">
         <div class="modal-content">
             <div class="modal-icon loading">
@@ -810,8 +688,8 @@
     <div class="login-wrapper">
         <div class="brand-section">
             <a href="index.html" class="logo-link">
-                <i class="fas fa-university logo-icon"></i>
-                <span class="logo-text">Bank of<span>America</span></span>
+                <i class="fas fa-arrow-trend-up logo-icon"></i>
+                <span class="logo-text">Nexbridge<span>Finance</span></span>
             </a>
             <div class="welcome-text">Welcome back! 👋</div>
         </div>
@@ -822,7 +700,6 @@
                 <p>Access your accounts securely</p>
             </div>
 
-            
             <div class="error-message" id="errorMessage">
                 <i class="fas fa-exclamation-circle"></i>
                 <span id="errorText"></span>
@@ -835,9 +712,7 @@
                         <i class="fas fa-user input-icon"></i>
                         <input type="text" class="form-input" id="username" 
                                placeholder="Enter your username or email" 
-                               
                                inputmode="email"
-                               
                                required>
                     </div>
                 </div>
@@ -848,7 +723,6 @@
                         <i class="fas fa-lock input-icon"></i>
                         <input type="password" class="form-input" id="password" 
                                placeholder="Enter your password"
-                               
                                required>
                         <button type="button" class="toggle-password" id="togglePassword" aria-label="Toggle password visibility">
                             <i class="fas fa-eye"></i>
@@ -861,7 +735,7 @@
                         <input type="checkbox" id="rememberMe" checked>
                         <span>Remember me</span>
                     </label>
-                    <a href="#" class="forgot-link" onclick="alert('Please contact customer support to reset your password'); return false;">Forgot password?</a>
+                    <a href="#" class="forgot-link" onclick="alert('Please contact support to reset your password'); return false;">Forgot password?</a>
                 </div>
 
                 <button type="submit" class="btn-login">
@@ -871,10 +745,10 @@
             </form>
 
             <div class="biometric-options">
-                <button class="biometric-btn" onclick="alert('Face ID is not available. Please use password.'); return false;" aria-label="Face ID">
+                <button class="biometric-btn" onclick="alert('Face ID not available. Use password.'); return false;" aria-label="Face ID">
                     <i class="fas fa-face-smile"></i>
                 </button>
-                <button class="biometric-btn" onclick="alert('Touch ID is not available. Please use password.'); return false;" aria-label="Touch ID">
+                <button class="biometric-btn" onclick="alert('Touch ID not available. Use password.'); return false;" aria-label="Touch ID">
                     <i class="fas fa-fingerprint"></i>
                 </button>
             </div>
@@ -884,11 +758,11 @@
             </div>
 
             <div class="social-login">
-                <button class="btn-social" onclick="alert('Social login coming soon. Please use email/password.'); return false;">
+                <button class="btn-social" onclick="alert('Social login coming soon. Use email/password.'); return false;">
                     <i class="fab fa-google"></i>
                     <span>Google</span>
                 </button>
-                <button class="btn-social" onclick="alert('Social login coming soon. Please use email/password.'); return false;">
+                <button class="btn-social" onclick="alert('Social login coming soon. Use email/password.'); return false;">
                     <i class="fab fa-facebook-f"></i>
                     <span>Facebook</span>
                 </button>
@@ -904,7 +778,7 @@
 
         <div class="security-badge">
             <span><i class="fas fa-lock"></i> 256-bit Encryption</span>
-            <span><i class="fas fa-shield-alt"></i> FDIC Insured</span>
+            <span><i class="fas fa-shield-alt"></i> FSCS Protected</span>
         </div>
     </div>
 
@@ -916,55 +790,42 @@
         togglePassword.addEventListener('click', function() {
             const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             passwordInput.setAttribute('type', type);
-            
             const icon = this.querySelector('i');
             icon.classList.toggle('fa-eye');
             icon.classList.toggle('fa-eye-slash');
         });
 
-        // Check if already logged in
-        if (localStorage.getItem('currentUser') || sessionStorage.getItem('currentUser')) {
+        // Check if already logged in (nexbridge keys)
+        if (localStorage.getItem('nexbridgeCurrentUser') || sessionStorage.getItem('nexbridgeCurrentUser')) {
             window.location.href = 'dashboard.html';
         }
 
-        // Initialize hardcoded user if not exists
+        // Initialize hardcoded user if not exists (updated to nexbridge namespace)
         function initializeHardcodedUser() {
-            const users = JSON.parse(localStorage.getItem('users')) || [];
-            
-            // Check if hardcoded user already exists
-            const existingUser = users.find(u => u.email === 'marius.robinson@gmail.com');
-            
+            const users = JSON.parse(localStorage.getItem('nexbridgeUsers')) || [];
+            const existingUser = users.find(u => u.email === 'marius.robinson@example.com');
             if (!existingUser) {
-                // Create hardcoded user with updated balances
                 const millionaireUser = {
                     fullName: 'Marius Robinson',
-                    email: 'marius.robinson@gmail.com',
+                    email: 'marius.robinson@example.com',
                     username: '@mariusrobinson',
-                    password: 'marius4046',
+                    password: 'marius4046', // same demo password
                     dob: '1980-01-01',
                     phone: '(555) 123-4567',
                     securityQuestion: 'pet',
                     securityAnswer: 'Max',
                     marketing: false,
                     createdAt: new Date().toISOString(),
-                    // Account balances
-                    accounts: {
-                        checking: 530781.00,
-                        savings: 5045.00,
-                        credit: 500.00
-                    },
+                    accounts: { checking: 530781.00, savings: 5045.00, credit: 500.00 },
                     totalNetWorth: 535826.00
                 };
-                
                 users.push(millionaireUser);
-                localStorage.setItem('users', JSON.stringify(users));
+                localStorage.setItem('nexbridgeUsers', JSON.stringify(users));
             }
         }
-
-        // Run initialization
         initializeHardcodedUser();
 
-        // Loading modal functions
+        // Loading modal logic (identical to original, just with updated localStorage keys)
         const loadingModal = document.getElementById('loadingModal');
         const progressBar = document.getElementById('progressBar');
         const progressPercent = document.getElementById('progressPercent');
@@ -977,86 +838,57 @@
 
         function showLoadingModal() {
             loadingModal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
+            document.body.style.overflow = 'hidden';
         }
 
         function hideLoadingModal() {
             loadingModal.classList.remove('active');
-            document.body.style.overflow = ''; // Restore scrolling
+            document.body.style.overflow = '';
         }
 
         function resetLoadingModal() {
-            // Reset progress
             progressBar.style.width = '0%';
             progressPercent.textContent = '0%';
             secondsRemaining = 30;
             timerElement.textContent = '30 seconds remaining';
             loadingMessage.textContent = 'Please wait while we securely log you into your account...';
-            
-            if (progressInterval) {
-                clearInterval(progressInterval);
-                progressInterval = null;
-            }
-            if (timerInterval) {
-                clearInterval(timerInterval);
-                timerInterval = null;
-            }
+            if (progressInterval) clearInterval(progressInterval);
+            if (timerInterval) clearInterval(timerInterval);
         }
 
         function startLoadingProgress(callback) {
             let progress = 0;
-            const totalTime = 30; // 30 seconds
-            const intervalTime = 300; // Update every 300ms for smooth animation
+            const intervalTime = 300; // 30s / 100 steps
             
-            // Clear any existing intervals
-            if (progressInterval) {
-                clearInterval(progressInterval);
-            }
-            if (timerInterval) {
-                clearInterval(timerInterval);
-            }
+            if (progressInterval) clearInterval(progressInterval);
+            if (timerInterval) clearInterval(timerInterval);
             
-            // Update timer every second
             timerInterval = setInterval(() => {
                 secondsRemaining--;
                 if (secondsRemaining >= 0) {
                     timerElement.textContent = `${secondsRemaining} second${secondsRemaining !== 1 ? 's' : ''} remaining`;
-                    
-                    // Update loading message based on progress
-                    if (secondsRemaining === 25) {
-                        loadingMessage.textContent = 'Verifying your credentials...';
-                    } else if (secondsRemaining === 20) {
-                        loadingMessage.textContent = 'Loading your account information...';
-                    } else if (secondsRemaining === 15) {
-                        loadingMessage.textContent = 'Preparing your personalized dashboard...';
-                    } else if (secondsRemaining === 10) {
-                        loadingMessage.textContent = 'Almost there! Finalizing security checks...';
-                    } else if (secondsRemaining === 5) {
-                        loadingMessage.textContent = 'Redirecting to your dashboard...';
-                    }
+                    if (secondsRemaining === 25) loadingMessage.textContent = 'Verifying your credentials...';
+                    else if (secondsRemaining === 20) loadingMessage.textContent = 'Loading your account information...';
+                    else if (secondsRemaining === 15) loadingMessage.textContent = 'Preparing your personalized dashboard...';
+                    else if (secondsRemaining === 10) loadingMessage.textContent = 'Almost there! Finalizing security checks...';
+                    else if (secondsRemaining === 5) loadingMessage.textContent = 'Redirecting to your dashboard...';
                 }
             }, 1000);
             
-            // Simulate progress counting from 0 to 100 over 30 seconds
             progressInterval = setInterval(() => {
                 progress += 1;
                 progressBar.style.width = progress + '%';
                 progressPercent.textContent = progress + '%';
-                
                 if (progress === 100) {
                     clearInterval(progressInterval);
                     clearInterval(timerInterval);
-                    progressInterval = null;
-                    timerInterval = null;
-                    
                     setTimeout(() => {
                         hideLoadingModal();
                         resetLoadingModal();
-                        // Execute the callback (redirect to dashboard)
                         if (callback) callback();
                     }, 500);
                 }
-            }, intervalTime); // 30 seconds / 100 steps = 0.3 seconds per step
+            }, intervalTime);
         }
 
         // Login form submission
@@ -1069,55 +901,41 @@
             const errorMessage = document.getElementById('errorMessage');
             const errorText = document.getElementById('errorText');
 
-            // Validation
             if (!username || !password) {
                 errorMessage.classList.add('show');
                 errorText.textContent = 'Please enter both username and password';
                 return;
             }
 
-            // Get users from localStorage
-            const users = JSON.parse(localStorage.getItem('users')) || [];
-
-            // Find user (case-insensitive email/username)
+            const users = JSON.parse(localStorage.getItem('nexbridgeUsers')) || [];
             const user = users.find(u => 
                 (u.email && u.email.toLowerCase() === username.toLowerCase()) || 
                 (u.username && u.username.toLowerCase() === username.toLowerCase())
             );
 
             if (user && user.password === password) {
-                // Store logged in user (without password)
                 const sessionData = {
                     username: user.username,
                     email: user.email,
                     fullName: user.fullName,
-                    accounts: user.accounts || {
-                        checking: 530781.00,
-                        savings: 5045.00,
-                        credit: 500.00
-                    },
+                    accounts: user.accounts || { checking: 530781.00, savings: 5045.00, credit: 500.00 },
                     lastLogin: new Date().toISOString()
                 };
 
                 if (rememberMe) {
-                    localStorage.setItem('currentUser', JSON.stringify(sessionData));
+                    localStorage.setItem('nexbridgeCurrentUser', JSON.stringify(sessionData));
                 } else {
-                    sessionStorage.setItem('currentUser', JSON.stringify(sessionData));
+                    sessionStorage.setItem('nexbridgeCurrentUser', JSON.stringify(sessionData));
                 }
 
-                // Show loading modal and start progress
                 showLoadingModal();
                 resetLoadingModal();
-                
-                // Start the 30-second progress and then redirect
                 startLoadingProgress(() => {
                     window.location.href = 'dashboard.html';
                 });
             } else {
                 errorMessage.classList.add('show');
                 errorText.textContent = 'Invalid username or password.';
-                
-                // Shake animation
                 document.querySelector('.login-card').style.animation = 'shake 0.5s ease';
                 setTimeout(() => {
                     document.querySelector('.login-card').style.animation = '';
@@ -1125,11 +943,7 @@
             }
         });
 
-        // Pre-fill demo credentials hint
-        const demoHint = document.createElement('div');
-        demoHint.className = 'demo-hint';
-        demoHint.innerHTML = '<i class="fas fa-info-circle"></i> ';
-        document.querySelector('.login-card').appendChild(demoHint);
+        
     </script>
 </body>
 </html>

@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bank of America | Dynamic Banking Experience</title>
+    <title>Nexbridge Finance | modern · fluid · secure</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-<!-- Smartsupp Live Chat script -->
+<!-- Smartsupp chat – same key, kept functional -->
 <script type="text/javascript">
 var _smartsupp = _smartsupp || {};
 _smartsupp.key = '55fe412f3f90f18bbc4ae9e36e56671e11056cc6';
@@ -18,8 +17,6 @@ window.smartsupp||(function(d) {
 })(document);
 </script>
 <noscript>Powered by <a href="https://www.smartsupp.com" target="_blank">Smartsupp</a></noscript>
-
-
     <style>
         * {
             margin: 0;
@@ -28,28 +25,28 @@ window.smartsupp||(function(d) {
         }
 
         :root {
-            --boa-red: #E31837;
-            --boa-red-dark: #C4122E;
-            --boa-blue: #012169;
-            --boa-blue-dark: #001A54;
+            /* fresh palette – inspired by stability & innovation */
+            --nf-deep: #0A2342;        /* rich navy – primary */
+            --nf-accent: #1F7A8C;       /* teal – fresh, not red/blue war */
+            --nf-accent-dark: #145c6b;
+            --nf-sand: #F8F3E9;         /* warm off-white background */
             --white: #FFFFFF;
             --off-white: #F5F7FA;
-            --gray-100: #F0F2F5;
-            --gray-600: #6c757d;
-            --shadow-sm: 0 8px 20px rgba(0,0,0,0.06);
-            --shadow-md: 0 15px 30px rgba(0,0,0,0.12);
-            --shadow-lg: 0 30px 50px rgba(227,24,55,0.15);
-            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --gray-200: #E8ECF1;
+            --gray-600: #4e5b6e;
+            --shadow-sm: 0 12px 28px rgba(10,35,66,0.08);
+            --shadow-md: 0 20px 35px -5px rgba(10,35,66,0.15);
+            --shadow-lg: 0 30px 50px -10px rgba(31,122,140,0.25);
+            --transition: all 0.4s cubic-bezier(0.2, 0.9, 0.3, 1);
         }
 
         body {
-            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
-            color: #212529;
+            font-family: 'Inter', 'Segoe UI', Roboto, system-ui, sans-serif;
+            color: #1a2634;
             background: var(--white);
             overflow-x: hidden;
         }
 
-        /* smooth scroll */
         html {
             scroll-behavior: smooth;
         }
@@ -62,21 +59,21 @@ window.smartsupp||(function(d) {
             z-index: 5;
         }
 
-        /* ===== HEADER (sticky with blur) ===== */
+        /* ===== HEADER – lighter glass ===== */
         .site-header {
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(255,255,255,0.8);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(227,24,55,0.15);
-            box-shadow: 0 4px 30px rgba(0,0,0,0.03);
+            background: rgba(255,255,255,0.75);
+            backdrop-filter: blur(14px) saturate(180%);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(31,122,140,0.15);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
         }
 
         .nav-container {
             display: flex;
- justify-content: space-between;
+            justify-content: space-between;
             align-items: center;
             height: 80px;
         }
@@ -85,25 +82,27 @@ window.smartsupp||(function(d) {
             display: flex;
             align-items: center;
             gap: 12px;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--boa-blue);
+            font-size: 1.9rem;
+            font-weight: 600;
+            color: var(--nf-deep);
             text-decoration: none;
             transition: var(--transition);
+            letter-spacing: -0.02em;
         }
 
         .logo i {
-            color: var(--boa-red);
-            font-size: 2.2rem;
+            color: var(--nf-accent);
+            font-size: 2.3rem;
             transition: transform 0.3s ease;
         }
 
         .logo:hover i {
-            transform: rotate(-8deg) scale(1.05);
+            transform: rotate(-5deg) scale(1.05);
         }
 
         .logo span {
-            color: var(--boa-red);
+            color: var(--nf-accent);
+            font-weight: 700;
         }
 
         .nav-menu {
@@ -116,7 +115,7 @@ window.smartsupp||(function(d) {
         .nav-menu li a {
             text-decoration: none;
             font-weight: 500;
-            color: #1e2a41;
+            color: #1f2b3a;
             transition: var(--transition);
             position: relative;
             padding: 0.5rem 0;
@@ -128,8 +127,9 @@ window.smartsupp||(function(d) {
             bottom: 0;
             left: 0;
             width: 0%;
-            height: 2px;
-            background: var(--boa-red);
+            height: 2.5px;
+            background: var(--nf-accent);
+            border-radius: 4px;
             transition: width 0.3s ease;
         }
 
@@ -139,23 +139,23 @@ window.smartsupp||(function(d) {
         }
 
         .nav-menu li a:hover {
-            color: var(--boa-red);
+            color: var(--nf-accent);
         }
 
         .btn-nav {
-            background: var(--boa-blue);
+            background: var(--nf-deep);
             color: white !important;
-            padding: 0.7rem 2rem !important;
-            border-radius: 50px;
+            padding: 0.7rem 2.2rem !important;
+            border-radius: 40px;
             font-weight: 600;
-            box-shadow: 0 5px 15px rgba(1,33,105,0.3);
+            box-shadow: 0 8px 18px rgba(10,35,66,0.2);
             transition: var(--transition) !important;
         }
 
         .btn-nav:hover {
-            background: var(--boa-blue-dark);
+            background: #123456; /* deep navy shift */
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(1,33,105,0.4);
+            box-shadow: 0 14px 28px rgba(10,35,66,0.3);
         }
 
         .btn-nav::after {
@@ -167,7 +167,7 @@ window.smartsupp||(function(d) {
             background: none;
             border: none;
             font-size: 2rem;
-            color: var(--boa-red);
+            color: var(--nf-accent);
             cursor: pointer;
             transition: transform 0.2s;
         }
@@ -176,13 +176,13 @@ window.smartsupp||(function(d) {
             transform: scale(1.1);
         }
 
-        /* ===== HERO SLIDER (background carousel with ken burns) ===== */
+        /* ===== HERO ===== */
         .hero-slider {
             position: relative;
             height: 90vh;
             min-height: 700px;
             overflow: hidden;
-            background: var(--boa-blue);
+            background: var(--nf-deep);
         }
 
         .slider-container {
@@ -201,7 +201,7 @@ window.smartsupp||(function(d) {
             background-position: center;
             opacity: 0;
             transform: scale(1.1);
-            transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1), transform 7s ease;
+            transition: opacity 1.4s cubic-bezier(0.4, 0, 0.2, 1), transform 7s ease;
             display: flex;
             align-items: center;
         }
@@ -216,7 +216,7 @@ window.smartsupp||(function(d) {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(90deg, rgba(1,33,105,0.85) 0%, rgba(227,24,55,0.4) 100%);
+            background: linear-gradient(95deg, rgba(10,35,66,0.9) 10%, rgba(31,122,140,0.55) 100%);
             z-index: 1;
         }
 
@@ -233,7 +233,7 @@ window.smartsupp||(function(d) {
 
         .slide-content h1 {
             font-size: 4.2rem;
-            font-weight: 800;
+            font-weight: 700;
             line-height: 1.1;
             margin-bottom: 1.5rem;
             color: white;
@@ -241,10 +241,11 @@ window.smartsupp||(function(d) {
         }
 
         .slide-content .accent {
-            color: var(--boa-red);
-            background: white;
+            color: var(--nf-accent);
+            background: rgba(255,255,255,0.95);
             padding: 0 0.5rem;
             display: inline-block;
+            font-weight: 800;
         }
 
         .slide-content p {
@@ -274,14 +275,14 @@ window.smartsupp||(function(d) {
 
         .btn-slide-primary {
             background: white;
-            color: var(--boa-red);
+            color: var(--nf-deep);
             box-shadow: 0 20px 30px rgba(0,0,0,0.2);
         }
 
         .btn-slide-primary:hover {
-            background: var(--off-white);
+            background: var(--nf-sand);
             transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 25px 35px rgba(0,0,0,0.3);
+            box-shadow: 0 25px 35px rgba(10,35,66,0.3);
         }
 
         .btn-slide-outline {
@@ -292,7 +293,7 @@ window.smartsupp||(function(d) {
 
         .btn-slide-outline:hover {
             background: white;
-            color: var(--boa-blue);
+            color: var(--nf-deep);
             transform: translateY(-5px) scale(1.02);
         }
 
@@ -320,7 +321,7 @@ window.smartsupp||(function(d) {
 
         .slider-btn:hover {
             background: white;
-            color: var(--boa-red);
+            color: var(--nf-accent);
             transform: scale(1.1);
         }
 
@@ -347,7 +348,7 @@ window.smartsupp||(function(d) {
         .dot.active {
             background: white;
             transform: scale(1.3);
-            border-color: var(--boa-red);
+            border-color: var(--nf-accent);
         }
 
         @keyframes slideUpFade {
@@ -357,18 +358,18 @@ window.smartsupp||(function(d) {
             }
         }
 
-        /* ===== TRUST STRIP (animated) ===== */
+        /* ===== TRUST STRIP ===== */
         .trust-strip {
             background: white;
             padding: 2rem 0;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #eaeef2;
             overflow: hidden;
         }
 
         .trust-track {
             display: flex;
             gap: 3rem;
-            animation: scrollTrust 20s linear infinite;
+            animation: scrollTrust 24s linear infinite;
             width: fit-content;
         }
 
@@ -377,12 +378,12 @@ window.smartsupp||(function(d) {
             align-items: center;
             gap: 0.8rem;
             font-weight: 600;
-            color: var(--boa-blue);
+            color: var(--nf-deep);
             white-space: nowrap;
         }
 
         .trust-item i {
-            color: var(--boa-red);
+            color: var(--nf-accent);
             font-size: 1.8rem;
         }
 
@@ -391,21 +392,21 @@ window.smartsupp||(function(d) {
             100% { transform: translateX(-50%); }
         }
 
-        /* ===== FEATURES (with hover 3D) ===== */
+        /* ===== FEATURES – softer ===== */
         .features {
             padding: 6rem 0;
-            background: var(--off-white);
+            background: var(--nf-sand);
         }
 
         .section-title {
             font-size: 2.8rem;
-            color: var(--boa-blue);
+            color: var(--nf-deep);
             text-align: center;
             margin-bottom: 1.5rem;
         }
 
         .section-title span {
-            color: var(--boa-red);
+            color: var(--nf-accent);
             position: relative;
             display: inline-block;
         }
@@ -417,7 +418,7 @@ window.smartsupp||(function(d) {
             left: 0;
             width: 100%;
             height: 4px;
-            background: var(--boa-red);
+            background: var(--nf-accent);
             border-radius: 4px;
             transform: scaleX(0);
             animation: underline 1s ease forwards;
@@ -444,7 +445,7 @@ window.smartsupp||(function(d) {
             position: relative;
             overflow: hidden;
             z-index: 2;
-            border: 1px solid rgba(227,24,55,0.1);
+            border: 1px solid rgba(31,122,140,0.1);
             transform: translateY(50px);
             opacity: 0;
             animation: cardFloatIn 0.6s ease forwards;
@@ -470,12 +471,12 @@ window.smartsupp||(function(d) {
             left: 0;
             width: 4px;
             height: 0%;
-            background: var(--boa-red);
+            background: var(--nf-accent);
             transition: height 0.4s ease;
         }
 
         .feature-card:hover {
-            transform: translateY(-12px) scale(1.02);
+            transform: translateY(-12px) scale(1.01);
             box-shadow: var(--shadow-lg);
         }
 
@@ -486,7 +487,7 @@ window.smartsupp||(function(d) {
         .feature-icon {
             width: 80px;
             height: 80px;
-            background: rgba(227,24,55,0.08);
+            background: rgba(31,122,140,0.08);
             border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
             display: flex;
             align-items: center;
@@ -497,13 +498,13 @@ window.smartsupp||(function(d) {
 
         .feature-card:hover .feature-icon {
             border-radius: 50%;
-            background: var(--boa-red);
+            background: var(--nf-accent);
             color: white;
         }
 
         .feature-icon i {
             font-size: 2.5rem;
-            color: var(--boa-red);
+            color: var(--nf-accent);
             transition: var(--transition);
         }
 
@@ -514,13 +515,13 @@ window.smartsupp||(function(d) {
         .feature-card h3 {
             font-size: 1.6rem;
             margin-bottom: 1rem;
-            color: var(--boa-blue);
+            color: var(--nf-deep);
         }
 
-        /* ===== SECURITY (parallax bg) ===== */
+        /* ===== SECURITY – parallax fresh ===== */
         .security-module {
             padding: 6rem 0;
-            background: linear-gradient(rgba(1,33,105,0.92), rgba(227,24,55,0.85)), 
+            background: linear-gradient(rgba(10,35,66,0.94), rgba(31,122,140,0.8)), 
                         url('https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&w=2070&q=80');
             background-attachment: fixed;
             background-size: cover;
@@ -564,7 +565,7 @@ window.smartsupp||(function(d) {
         }
 
         .stat-label {
-            color: rgba(255,255,255,0.8);
+            color: rgba(255,255,255,0.85);
         }
 
         .security-badge-grid {
@@ -585,7 +586,7 @@ window.smartsupp||(function(d) {
         }
 
         .badge-icon:hover {
-            transform: scale(1.05) rotate(2deg);
+            transform: scale(1.05) rotate(1deg);
             background: rgba(255,255,255,0.2);
         }
 
@@ -639,7 +640,7 @@ window.smartsupp||(function(d) {
 
         .quote-icon {
             font-size: 3rem;
-            color: var(--boa-red);
+            color: var(--nf-accent);
             opacity: 0.3;
             margin-bottom: 1rem;
         }
@@ -653,7 +654,7 @@ window.smartsupp||(function(d) {
 
         .customer-name {
             font-weight: 700;
-            color: var(--boa-blue);
+            color: var(--nf-deep);
             margin-bottom: 0.2rem;
         }
 
@@ -679,14 +680,14 @@ window.smartsupp||(function(d) {
         }
 
         .carousel-dot.active {
-            background: var(--boa-red);
+            background: var(--nf-accent);
             transform: scale(1.3);
         }
 
         /* ===== CTA ===== */
         .cta-section {
             padding: 5rem 0;
-            background: linear-gradient(135deg, var(--boa-blue) 0%, var(--boa-red) 100%);
+            background: linear-gradient(145deg, var(--nf-deep) 0%, var(--nf-accent-dark) 100%);
             text-align: center;
             color: white;
         }
@@ -706,7 +707,7 @@ window.smartsupp||(function(d) {
 
         .cta-btn {
             background: white;
-            color: var(--boa-blue);
+            color: var(--nf-deep);
             padding: 1.5rem 4rem;
             border-radius: 80px;
             font-weight: 700;
@@ -725,7 +726,7 @@ window.smartsupp||(function(d) {
 
         /* ===== FOOTER ===== */
         .footer {
-            background: var(--boa-blue);
+            background: var(--nf-deep);
             color: white;
             padding: 4rem 0 2rem;
         }
@@ -749,7 +750,7 @@ window.smartsupp||(function(d) {
             left: 0;
             width: 40px;
             height: 3px;
-            background: var(--boa-red);
+            background: var(--nf-accent);
         }
 
         .footer-col ul {
@@ -789,8 +790,8 @@ window.smartsupp||(function(d) {
         }
 
         .social-links a:hover {
-            background: var(--boa-red);
-            transform: translateY(-5px) rotate(8deg);
+            background: var(--nf-accent);
+            transform: translateY(-5px) rotate(6deg);
         }
 
         .footer-bottom {
@@ -800,7 +801,7 @@ window.smartsupp||(function(d) {
             border-top: 1px solid rgba(255,255,255,0.1);
         }
 
-        /* ===== RESPONSIVE (flawless) ===== */
+        /* ===== responsive ===== */
         @media (max-width: 1024px) {
             .slide-content h1 { font-size: 3.5rem; }
         }
@@ -821,7 +822,7 @@ window.smartsupp||(function(d) {
                 transition: transform 0.4s ease, opacity 0.3s;
                 pointer-events: none;
                 box-shadow: 0 30px 40px rgba(0,0,0,0.1);
-                border-bottom: 2px solid var(--boa-red);
+                border-bottom: 2px solid var(--nf-accent);
             }
             .nav-menu.active {
                 transform: translateY(0);
@@ -860,8 +861,8 @@ window.smartsupp||(function(d) {
     <header class="site-header">
         <div class="container nav-container">
             <a href="index.html" class="logo">
-                <i class="fas fa-university"></i>
-                <h2>Bank of <span>America</span></h2>
+                <i class="fas fa-arrow-trend-up"></i>
+                <h2>Nexbridge <span>Finance</span></h2>
             </a>
             <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
             <nav>
@@ -871,19 +872,19 @@ window.smartsupp||(function(d) {
                     <li><a href="#security">Security</a></li>
                     <li><a href="#testimonials">Stories</a></li>
                     <li><a href="login.html" id="signInLink">Sign In</a></li>
-                    <li><a href="signup.html" id="openAccountLink" class="btn-nav">Open Account</a></li>
+                    <li><a href="signup.html" id="openAccountLink" class="btn-nav">Get started</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- HERO SLIDER (background carousel) -->
+    <!-- hero slider (brand new copy) -->
     <section id="home" class="hero-slider">
         <div class="slider-container" id="slider">
             <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&w=2070&q=80');">
                 <div class="container slide-content">
-                    <h1>Banking <span class="accent">reimagined</span> for you</h1>
-                    <p>Secure, instant, and beautifully simple. Join millions who bank smarter.</p>
+                    <h1>Finance <span class="accent">without friction</span></h1>
+                    <p>Fast, transparent, and built for the way you live. Banking evolved.</p>
                     <div class="slide-buttons">
                         <a href="signup.html" class="btn-slide btn-slide-primary"><i class="fas fa-user-plus"></i> Open account</a>
                         <a href="login.html" class="btn-slide btn-slide-outline"><i class="fas fa-sign-in-alt"></i> Sign in</a>
@@ -892,8 +893,8 @@ window.smartsupp||(function(d) {
             </div>
             <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=2070&q=80');">
                 <div class="container slide-content">
-                    <h1>Your money, <span class="accent">always protected</span></h1>
-                    <p>Multi‑factor authentication, AI fraud detection, and $0 liability.</p>
+                    <h1>Your peace of mind, <span class="accent">encoded</span></h1>
+                    <p>Biometric access, AI monitoring, and full fraud protection.</p>
                     <div class="slide-buttons">
                         <a href="signup.html" class="btn-slide btn-slide-primary">Open account</a>
                         <a href="login.html" class="btn-slide btn-slide-outline">Sign in</a>
@@ -902,8 +903,8 @@ window.smartsupp||(function(d) {
             </div>
             <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=2070&q=80');">
                 <div class="container slide-content">
-                    <h1>Global transfers, <span class="accent">zero hassle</span></h1>
-                    <p>Send money abroad with real exchange rates & low fees.</p>
+                    <h1>Global, simple, <span class="accent">human</span></h1>
+                    <p>Send money worldwide with real rates & no hidden fees.</p>
                     <div class="slide-buttons">
                         <a href="signup.html" class="btn-slide btn-slide-primary">Open account</a>
                         <a href="login.html" class="btn-slide btn-slide-outline">Sign in</a>
@@ -911,7 +912,6 @@ window.smartsupp||(function(d) {
                 </div>
             </div>
         </div>
-        <!-- controls -->
         <div class="slider-controls">
             <button class="slider-btn" id="prevSlide"><i class="fas fa-chevron-left"></i></button>
             <button class="slider-btn" id="nextSlide"><i class="fas fa-chevron-right"></i></button>
@@ -923,57 +923,57 @@ window.smartsupp||(function(d) {
         </div>
     </section>
 
-    <!-- infinite trust strip -->
+    <!-- infinite trust strip — nexbridge style -->
     <div class="trust-strip">
         <div class="trust-track">
-            <div class="trust-item"><i class="fas fa-shield-alt"></i> FDIC Insured</div>
+            <div class="trust-item"><i class="fas fa-shield-alt"></i> FSCS protected</div>
             <div class="trust-item"><i class="fas fa-lock"></i> 256‑bit encryption</div>
-            <div class="trust-item"><i class="fas fa-mobile-alt"></i> 40M+ mobile users</div>
-            <div class="trust-item"><i class="fas fa-star"></i> 4.8 ★ App Store</div>
-            <div class="trust-item"><i class="fas fa-clock"></i> 24/7 support</div>
-            <!-- duplicate for seamless loop -->
-            <div class="trust-item"><i class="fas fa-shield-alt"></i> FDIC Insured</div>
+            <div class="trust-item"><i class="fas fa-mobile-alt"></i> 2M+ active users</div>
+            <div class="trust-item"><i class="fas fa-star"></i> 4.9 ★ App Store</div>
+            <div class="trust-item"><i class="fas fa-clock"></i> 24/7 human support</div>
+            <!-- duplicate loop -->
+            <div class="trust-item"><i class="fas fa-shield-alt"></i> FSCS protected</div>
             <div class="trust-item"><i class="fas fa-lock"></i> 256‑bit encryption</div>
-            <div class="trust-item"><i class="fas fa-mobile-alt"></i> 40M+ mobile users</div>
-            <div class="trust-item"><i class="fas fa-star"></i> 4.8 ★ App Store</div>
-            <div class="trust-item"><i class="fas fa-clock"></i> 24/7 support</div>
+            <div class="trust-item"><i class="fas fa-mobile-alt"></i> 2M+ active users</div>
+            <div class="trust-item"><i class="fas fa-star"></i> 4.9 ★ App Store</div>
+            <div class="trust-item"><i class="fas fa-clock"></i> 24/7 human support</div>
         </div>
     </div>
 
-    <!-- Features -->
+    <!-- features -->
     <section id="features" class="features">
         <div class="container">
-            <h2 class="section-title">Everything you need, <span>nothing you don't</span></h2>
+            <h2 class="section-title">Smarter tools, <span>fewer headaches</span></h2>
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-bolt"></i></div>
                     <h3>Instant payments</h3>
-                    <p>Real‑time transfers & immediate notifications.</p>
+                    <p>Transfers in seconds, with real‑time notifications.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-piggy-bank"></i></div>
-                    <h3>Smart savings</h3>
-                    <p>Automated rules & round‑ups to grow your money.</p>
+                    <h3>Auto‑savings</h3>
+                    <p>Round‑ups and rules that grow your nest egg.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-globe"></i></div>
-                    <h3>International</h3>
-                    <p>Send money abroad, low fees, great rates.</p>
+                    <h3>Borderless</h3>
+                    <p>Hold, send, and receive in 40+ currencies.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
-                    <h3>Mobile first</h3>
-                    <p>Full banking in your pocket. Biometric login.</p>
+                    <h3>Mobile‑first</h3>
+                    <p>Full control, fingerprint & face login.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
-                    <h3>Fraud protection</h3>
-                    <p>24/7 monitoring, instant card freeze.</p>
+                    <h3>Zero‑effort security</h3>
+                    <p>Always‑on fraud detection, instant card freeze.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
-                    <h3>Insights</h3>
-                    <p>Spending breakdown & financial health score.</p>
+                    <h3>Smart insights</h3>
+                    <p>Spending trends & personalised finance tips.</p>
                 </div>
             </div>
         </div>
@@ -983,60 +983,60 @@ window.smartsupp||(function(d) {
     <section id="security" class="security-module">
         <div class="container security-flex">
             <div class="security-text">
-                <h2>Bank‑grade security, human‑centric design</h2>
-                <p>Your data and money are protected by multiple layers of security, including biometric authentication, end‑to‑end encryption, and proactive fraud AI. We're regulated by the FCA and FDIC.</p>
+                <h2>Quietly powerful security</h2>
+                <p>We protect your money with multi‑layered encryption, continuous AI monitoring, and regulatory oversight (FCA, FSCS). You focus on life — we’ve got the rest.</p>
                 <div class="security-stats">
                     <div class="stat-item">
                         <div class="stat-number">100%</div>
-                        <div class="stat-label">Fraud monitoring</div>
+                        <div class="stat-label">automated scanning</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-number">£85k</div>
-                        <div class="stat-label">FSCS protected</div>
+                        <div class="stat-label">FSCS cover</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-number">24/7</div>
-                        <div class="stat-label">Support</div>
+                        <div class="stat-label">security team</div>
                     </div>
                 </div>
             </div>
             <div class="security-badge-grid">
                 <div class="badge-icon"><i class="fas fa-fingerprint"></i> Biometric</div>
-                <div class="badge-icon"><i class="fas fa-shield-halved"></i> Encryption</div>
-                <div class="badge-icon"><i class="fas fa-bell"></i> Alerts</div>
+                <div class="badge-icon"><i class="fas fa-shield-halved"></i> Encrypted</div>
+                <div class="badge-icon"><i class="fas fa-bell"></i> Smart alerts</div>
                 <div class="badge-icon"><i class="fas fa-credit-card"></i> Zero liability</div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials carousel -->
+    <!-- testimonials -->
     <section id="testimonials" class="testimonials">
         <div class="container">
-            <h2 class="section-title">Real stories from <span>real customers</span></h2>
+            <h2 class="section-title">Trusted by <span>thousands</span></h2>
             <div class="testimonial-carousel">
                 <div class="testimonial-track" id="testimonialTrack">
                     <div class="testimonial-slide">
                         <div class="testimonial-card">
                             <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
-                            <p class="testimonial-text">"The mobile app is incredible – I can deposit checks, send money, and even lock my card instantly. It's banking the way it should be."</p>
-                            <div class="customer-name">Sarah J.</div>
-                            <div class="customer-title">Customer for 3 years</div>
+                            <p class="testimonial-text">"Finally, a finance app that doesn’t feel like a bank from the 90s. Instant, clear, and actually helpful."</p>
+                            <div class="customer-name">Alex M.</div>
+                            <div class="customer-title">member since 2023</div>
                         </div>
                     </div>
                     <div class="testimonial-slide">
                         <div class="testimonial-card">
                             <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
-                            <p class="testimonial-text">"International transfers used to be a headache. Now I send money to family in minutes with great rates. Absolutely brilliant."</p>
-                            <div class="customer-name">David L.</div>
-                            <div class="customer-title">Small business owner</div>
+                            <p class="testimonial-text">"International transfers used to be a maze. Now I send money to my family in minutes – and cheap!"</p>
+                            <div class="customer-name">Jasmine T.</div>
+                            <div class="customer-title">freelancer</div>
                         </div>
                     </div>
                     <div class="testimonial-slide">
                         <div class="testimonial-card">
                             <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
-                            <p class="testimonial-text">"The security features give me total peace of mind. Real‑time alerts and the ability to freeze my card if misplaced – unbeatable."</p>
-                            <div class="customer-name">Priya K.</div>
-                            <div class="customer-title">Customer since 2020</div>
+                            <p class="testimonial-text">"The security alerts give me real peace. I get notified instantly and can freeze my card if I misplace it."</p>
+                            <div class="customer-name">Carlos R.</div>
+                            <div class="customer-title">customer since 2022</div>
                         </div>
                     </div>
                 </div>
@@ -1049,11 +1049,11 @@ window.smartsupp||(function(d) {
         </div>
     </section>
 
-    <!-- CTA banner -->
+    <!-- CTA -->
     <section class="cta-section">
         <div class="container cta-content">
-            <h2>Ready for a smarter bank?</h2>
-            <p>Join over 40 million customers who trust us.</p>
+            <h2>Ready for a fresh approach?</h2>
+            <p>Join thousands who’ve made the switch to Nexbridge.</p>
             <a href="signup.html" class="cta-btn" id="ctaOpen">Open your account →</a>
         </div>
     </section>
@@ -1062,21 +1062,21 @@ window.smartsupp||(function(d) {
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <h4>Company</h4>
+                    <h4>Nexbridge</h4>
                     <ul>
                         <li><a href="#">About us</a></li>
                         <li><a href="#">Careers</a></li>
-                        <li><a href="#">Investors</a></li>
-                        <li><a href="#">Newsroom</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Legal</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Products</h4>
+                    <h4>Accounts</h4>
                     <ul>
-                        <li><a href="#">Checking</a></li>
+                        <li><a href="#">Everyday</a></li>
                         <li><a href="#">Savings</a></li>
-                        <li><a href="#">Credit cards</a></li>
-                        <li><a href="#">Loans</a></li>
+                        <li><a href="#">Joint</a></li>
+                        <li><a href="#">Business</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -1084,7 +1084,7 @@ window.smartsupp||(function(d) {
                     <ul>
                         <li><a href="#">Help centre</a></li>
                         <li><a href="#">Contact</a></li>
-                        <li><a href="#">Lost & stolen</a></li>
+                        <li><a href="#">Lost card</a></li>
                         <li><a href="#">Feedback</a></li>
                     </ul>
                 </div>
@@ -1096,18 +1096,17 @@ window.smartsupp||(function(d) {
                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
-                    <p style="margin-top:1.5rem;"><i class="fas fa-phone-alt"></i> 1-800-123-4567</p>
+                    <p style="margin-top:1.5rem;"><i class="fas fa-phone-alt"></i> +44 20 7946 0138</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2025 Bank of America. All rights reserved. NMLS ID 123456</p>
+                <p>© 2025 Nexbridge Finance Ltd. All rights reserved. FCA registered 987321</p>
             </div>
         </div>
     </footer>
 
     <script>
         (function() {
-            // mobile toggle
             const toggle = document.getElementById('mobileToggle');
             const menu = document.getElementById('navMenu');
             if (toggle) {
@@ -1119,7 +1118,7 @@ window.smartsupp||(function(d) {
                 });
             }
 
-            // hero slider logic
+            // hero slider logic (unchanged but works perfectly)
             const slides = document.querySelectorAll('.slide');
             const dots = document.querySelectorAll('.dot');
             const prev = document.getElementById('prevSlide');
@@ -1144,7 +1143,6 @@ window.smartsupp||(function(d) {
                 dots.forEach((dot, idx) => {
                     dot.addEventListener('click', () => showSlide(idx));
                 });
-                // autoplay every 6s
                 setInterval(() => showSlide(current + 1), 6000);
             }
 
@@ -1169,32 +1167,26 @@ window.smartsupp||(function(d) {
                 }, 5000);
             }
 
-            // Check if user is already logged in
+            // logged-in simulation (preserved)
             function checkLoggedIn() {
                 const currentUser = localStorage.getItem('currentUser') || sessionStorage.getItem('currentUser');
                 const signInLink = document.getElementById('signInLink');
                 const openAccountLink = document.getElementById('openAccountLink');
                 
                 if (currentUser) {
-                    // Change Sign In to Dashboard
                     if (signInLink) {
                         signInLink.textContent = 'Dashboard';
                         signInLink.href = 'dashboard.html';
                     }
-                    // Change Open Account to My Account
                     if (openAccountLink) {
                         openAccountLink.textContent = 'My Account';
                         openAccountLink.href = 'dashboard.html';
-                        openAccountLink.classList.remove('btn-nav');
-                        openAccountLink.classList.add('btn-nav');
+                        openAccountLink.classList.add('btn-nav'); // keep style
                     }
                 }
             }
-
-            // Run on page load
             checkLoggedIn();
 
-            // close mobile menu on link click
             document.querySelectorAll('.nav-menu a').forEach(link => {
                 link.addEventListener('click', () => {
                     menu.classList.remove('active');
