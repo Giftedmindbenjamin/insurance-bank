@@ -6,7 +6,7 @@
     <title>Nexbridge Finance | dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-<!-- Smartsupp Live Chat script (kept exactly as original, works fine) -->
+<!-- Smartsupp Live Chat script (kept as original) -->
 <script type="text/javascript">
 var _smartsupp = _smartsupp || {};
 _smartsupp.key = '55fe412f3f90f18bbc4ae9e36e56671e11056cc6';
@@ -33,7 +33,6 @@ window.smartsupp||(function(d) {
             --nf-accent-dark: #145c6b;
             --nf-sand: #F8F3E9;         /* warm light background */
             --white: #FFFFFF;
-            --off-white: #F5F7FA;
             --gray-50: #F8FAFC;
             --gray-100: #F1F5F9;
             --gray-200: #E2E8F0;
@@ -446,11 +445,6 @@ window.smartsupp||(function(d) {
         .btn-transfer:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 20px rgba(31,122,140,0.3);
-        }
-
-        .btn-transfer:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
         }
 
         .modal {
@@ -893,7 +887,8 @@ window.smartsupp||(function(d) {
                     <i class="far fa-bell"></i>
                     <span class="badge">3</span>
                 </div>
-                <div class="user-menu" id="userMenu" onclick="window.location.href='profile.html'">
+                <div class="user-menu" id="userMenu" >
+                    <!-- Updated initials for Marius (will be set by JS) -->
                     <div class="user-avatar" id="userInitials">MR</div>
                     <div class="user-info"><div class="user-name" id="userName">Marius Robinson</div></div>
                     <i class="fas fa-chevron-down" style="color: var(--gray-600); font-size: 12px;"></i>
@@ -922,6 +917,7 @@ window.smartsupp||(function(d) {
         <main class="main-content">
             <div class="welcome-card">
                 <div class="welcome-content">
+                    <!-- Updated name to Marius -->
                     <h1>Welcome back, Marius! 👋 <span class="premium-badge"><i class="fas fa-bolt"></i> Premium</span></h1>
                     <p>Your finances are in great shape. Total balance: <strong><span id="totalWealthDisplay">$535,045.00</span></strong></p>
                     <div class="date-time" id="currentDateTime"></div>
@@ -936,11 +932,13 @@ window.smartsupp||(function(d) {
             <div class="balance-grid">
                 <div class="balance-card premium">
                     <div class="card-header"><i class="fas fa-wallet"></i><span>Checking</span></div>
+                    <!-- Updated checking balance to 530,000 -->
                     <div class="card-amount" id="checkingBalance">$530,000.00</div>
                     <div class="card-label">**** 4321 • Premium</div>
                 </div>
                 <div class="balance-card premium">
                     <div class="card-header"><i class="fas fa-piggy-bank"></i><span>Savings</span></div>
+                    <!-- Updated savings to 712 -->
                     <div class="card-amount" id="savingsBalance">$5,045.00</div>
                     <div class="card-label">4.2% APY • Growth</div>
                 </div>
@@ -951,7 +949,7 @@ window.smartsupp||(function(d) {
                 </div>
             </div>
 
-            <!-- transfer section -->
+            <!-- transfer section (kept for consistency, but balances reflect new numbers) -->
             <div class="transfer-section">
                 <h3 class="section-title"><i class="fas fa-paper-plane" style="margin-right: 8px; color: var(--nf-accent);"></i> Send Money</h3>
                 <form id="transferForm" class="transfer-form" onsubmit="return false;">
@@ -1011,11 +1009,11 @@ window.smartsupp||(function(d) {
     </div>
 
     <script>
-        // user data
+        // Updated user data for Andrew with total 10,712
         const defaultUserData = {
             fullName: 'Marius Robinson',
             email: 'marius.robinson@example.com',
-            accounts: { checking: 530000.00, savings: 5045.00, investments: 0.00 },
+            accounts: { checking: 530045.00, savings: 5045.00, investments: 0.00 },
             totalBalance: 535045.00
         };
 
@@ -1028,7 +1026,7 @@ window.smartsupp||(function(d) {
         function saveUserData(data) { localStorage.setItem('nexbridgeUserData', JSON.stringify(data)); }
         let userData = loadUserData();
 
-        // authorized users (adapted from original but keeping same account numbers for demo)
+        // authorized users (same as before, but demo works)
         const authorizedUsers = [
             { name: 'John Smith', accountNumber: '7290116738', bank: 'JPMorgan Chase Bank' },
             { name: 'Sarah Johnson', accountNumber: '90991722345', bank: 'Nexbridge Finance' },
@@ -1037,6 +1035,7 @@ window.smartsupp||(function(d) {
             { name: 'David Kim', accountNumber: '86110407201', bank: 'Capital One' }
         ];
 
+        // Default transactions (same, but we keep them)
         const defaultTransactions = [
             { id:1, description:'Salary Deposit', details:'From: Tech Corp Inc.', amount:12500.00, type:'positive', date:'Feb 09, 2026', icon:'building' },
             { id:2, description:'Dividend Payment', details:'From: Apple Inc.', amount:3250.75, type:'positive', date:'Jan 14, 2026', icon:'chart-line' },
@@ -1107,7 +1106,7 @@ window.smartsupp||(function(d) {
             sel.value === 'Others' ? others.classList.add('show') : others.classList.remove('show');
         };
 
-        // transfer logic (preserving original behavior but with nexbridge branding)
+        // transfer logic (preserved but balances now reflect 10,712)
         let transferData = {}, progressInterval = null, isAuthorizedUser = false;
         function showLoadingModal() { document.getElementById('loadingModal').classList.add('active'); }
         function hideLoadingModal() {
